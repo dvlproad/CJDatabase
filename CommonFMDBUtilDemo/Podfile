@@ -1,0 +1,11 @@
+platform :ios, '7.0'
+#use_frameworks!
+
+target 'CommonFMDBUtilDemo' do
+#  pod 'FMDB', '~> 2.5'
+  pod 'FMDBHelper', '~> 0.0.8'
+end
+
+target 'CommonFMDBUtilDemoTests' do
+
+end
