@@ -31,9 +31,9 @@
     
     
 #ifdef USE_CommonFMDBUtil
-    [CommonFMDBUtil setDataBaseName:@"demo_fmdb.db"];
+    [CommonFMDBUtil setDataBaseName:@"demofmdb.db"];
 #else
-    [CommonSqliteUtil setDataBaseName:@"demo_sqlite.db"];
+    [CommonSqliteUtil setDataBaseName:@"demosqlite.db"];
 #endif
 
     return YES;

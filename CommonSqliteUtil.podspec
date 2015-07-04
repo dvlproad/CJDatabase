@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "0.0.1" }
   s.source_files  = "CommonSqliteUtil/*.{h,m}"
-  s.resources = "CommonSqliteUtil/demo_sqlite.db"
+  s.resources = "CommonSqliteUtil/demosqlite.db"
   s.frameworks = 'UIKit'
 
 

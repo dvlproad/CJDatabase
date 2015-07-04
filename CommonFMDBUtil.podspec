@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "0.0.1" }
   s.source_files  = "CommonFMDBUtil/*.{h,m}"
-  s.resources = "CommonFMDBUtil/demo_fmdb.db"
+  s.resources = "CommonFMDBUtil/demofmdb.db"
   s.frameworks = 'UIKit'
 
   # s.library   = "iconv"
