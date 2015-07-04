@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CommonInfoHelper"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "一个Info结构体的帮助类"
   s.homepage     = "https://github.com/dvlproad/CommonFMDBUtil"
   s.license      = "MIT"
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "0.0.2" }
   s.source_files  = "CommonInfoHelper/*.{h,m}"
   # s.resources = "Resources/*.png"
   s.frameworks = 'UIKit'
