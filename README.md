@@ -4,7 +4,8 @@
 
 方法：
 两个类的使用精髓，都是注重在编辑sql语句上。
-附：```
+附：
+```
 CommonSqliteUtil.podspec别忘了加 s.libraries = "sqlite3"
 ```
 

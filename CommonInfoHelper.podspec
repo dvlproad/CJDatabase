@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
-  s.name         = "CommonFMDBUtil"
+  s.name         = "CommonInfoHelper"
   s.version      = "0.0.1"
-  s.summary      = "easier to use FMDB."
+  s.summary      = "一个Info结构体的帮助类"
   s.homepage     = "https://github.com/dvlproad/CommonFMDBUtil"
   s.license      = "MIT"
   s.author             = { "dvlproad" => "913168921@qq.com" }
@@ -10,17 +10,17 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
   s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "0.0.1" }
-  s.source_files  = "CommonFMDBUtil/*.{h,m}"
-  s.resources = "CommonFMDBUtil/demo_fmdb.db"
+  s.source_files  = "CommonInfoHelper/*.{h,m}"
+  # s.resources = "Resources/*.png"
   s.frameworks = 'UIKit'
 
+
   # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
+  # s.libraries = "sqlite3"
 
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-  s.dependency 'FMDB', '~> 2.5'
 
 end

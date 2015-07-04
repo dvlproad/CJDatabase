@@ -14,10 +14,6 @@
 		80495E881B47A06400F72858 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80495E871B47A06400F72858 /* Images.xcassets */; };
 		80495E8B1B47A06400F72858 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80495E891B47A06400F72858 /* LaunchScreen.xib */; };
 		80495E971B47A06500F72858 /* CommonFMDBUtilDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495E961B47A06500F72858 /* CommonFMDBUtilDemoTests.m */; };
-		80495EB11B47A71C00F72858 /* CommonFMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EAB1B47A71C00F72858 /* CommonFMDBUtil.m */; };
-		80495EB21B47A71C00F72858 /* CommonInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EAD1B47A71C00F72858 /* CommonInfoHelper.m */; };
-		80495EB31B47A71C00F72858 /* CommonSqliteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EAF1B47A71C00F72858 /* CommonSqliteUtil.m */; };
-		80495EB41B47A71C00F72858 /* demo.db in Resources */ = {isa = PBXBuildFile; fileRef = 80495EB01B47A71C00F72858 /* demo.db */; };
 		80495EC71B47A8BE00F72858 /* AccountFMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EC11B47A8BE00F72858 /* AccountFMDBUtil.m */; };
 		80495EC81B47A8BE00F72858 /* AccountSqliteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EC31B47A8BE00F72858 /* AccountSqliteUtil.m */; };
 		80495EC91B47A8BE00F72858 /* AccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EC61B47A8BE00F72858 /* AccountInfo.m */; };
@@ -26,6 +22,11 @@
 		80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495ECE1B47A8EE00F72858 /* DBViewController+Event.m */; };
 		80495ED51B47ABC100F72858 /* people_logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 80495ED31B47ABC100F72858 /* people_logout.png */; };
 		80495ED61B47ABC100F72858 /* people_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 80495ED41B47ABC100F72858 /* people_test.png */; };
+		80495EE51B47CA0200F72858 /* CommonFMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EDC1B47CA0200F72858 /* CommonFMDBUtil.m */; };
+		80495EE61B47CA0200F72858 /* demo_fmdb.db in Resources */ = {isa = PBXBuildFile; fileRef = 80495EDD1B47CA0200F72858 /* demo_fmdb.db */; };
+		80495EE71B47CA0200F72858 /* CommonInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EE01B47CA0200F72858 /* CommonInfoHelper.m */; };
+		80495EE81B47CA0200F72858 /* CommonSqliteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495EE31B47CA0200F72858 /* CommonSqliteUtil.m */; };
+		80495EE91B47CA0200F72858 /* demo_sqlite.db in Resources */ = {isa = PBXBuildFile; fileRef = 80495EE41B47CA0200F72858 /* demo_sqlite.db */; };
 		B77AA7BF45A9327EB8BD3716 /* libPods-CommonFMDBUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC7115713958362D96AE8FB6 /* libPods-CommonFMDBUtilDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -53,13 +54,6 @@
 		80495E901B47A06500F72858 /* CommonFMDBUtilDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonFMDBUtilDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80495E951B47A06500F72858 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80495E961B47A06500F72858 /* CommonFMDBUtilDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonFMDBUtilDemoTests.m; sourceTree = "<group>"; };
-		80495EAA1B47A71C00F72858 /* CommonFMDBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFMDBUtil.h; sourceTree = "<group>"; };
-		80495EAB1B47A71C00F72858 /* CommonFMDBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFMDBUtil.m; sourceTree = "<group>"; };
-		80495EAC1B47A71C00F72858 /* CommonInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoHelper.h; sourceTree = "<group>"; };
-		80495EAD1B47A71C00F72858 /* CommonInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoHelper.m; sourceTree = "<group>"; };
-		80495EAE1B47A71C00F72858 /* CommonSqliteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSqliteUtil.h; sourceTree = "<group>"; };
-		80495EAF1B47A71C00F72858 /* CommonSqliteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSqliteUtil.m; sourceTree = "<group>"; };
-		80495EB01B47A71C00F72858 /* demo.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.db; sourceTree = "<group>"; };
 		80495EC01B47A8BE00F72858 /* AccountFMDBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountFMDBUtil.h; sourceTree = "<group>"; };
 		80495EC11B47A8BE00F72858 /* AccountFMDBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountFMDBUtil.m; sourceTree = "<group>"; };
 		80495EC21B47A8BE00F72858 /* AccountSqliteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSqliteUtil.h; sourceTree = "<group>"; };
@@ -74,6 +68,14 @@
 		80495ED21B47AA2E00F72858 /* project.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = project.pch; sourceTree = "<group>"; };
 		80495ED31B47ABC100F72858 /* people_logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_logout.png; sourceTree = "<group>"; };
 		80495ED41B47ABC100F72858 /* people_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_test.png; sourceTree = "<group>"; };
+		80495EDB1B47CA0200F72858 /* CommonFMDBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFMDBUtil.h; sourceTree = "<group>"; };
+		80495EDC1B47CA0200F72858 /* CommonFMDBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFMDBUtil.m; sourceTree = "<group>"; };
+		80495EDD1B47CA0200F72858 /* demo_fmdb.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo_fmdb.db; sourceTree = "<group>"; };
+		80495EDF1B47CA0200F72858 /* CommonInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoHelper.h; sourceTree = "<group>"; };
+		80495EE01B47CA0200F72858 /* CommonInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoHelper.m; sourceTree = "<group>"; };
+		80495EE21B47CA0200F72858 /* CommonSqliteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSqliteUtil.h; sourceTree = "<group>"; };
+		80495EE31B47CA0200F72858 /* CommonSqliteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSqliteUtil.m; sourceTree = "<group>"; };
+		80495EE41B47CA0200F72858 /* demo_sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo_sqlite.db; sourceTree = "<group>"; };
 		B03662D19BFC3D6ED1F9CC8E /* Pods-CommonFMDBUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonFMDBUtilDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommonFMDBUtilDemo/Pods-CommonFMDBUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
 		CC7115713958362D96AE8FB6 /* libPods-CommonFMDBUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommonFMDBUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6A5FEDAD05497B15EA0AB9 /* Pods-CommonFMDBUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonFMDBUtilDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommonFMDBUtilDemo/Pods-CommonFMDBUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,7 +139,9 @@
 				80495E841B47A06400F72858 /* Main.storyboard */,
 				80495E871B47A06400F72858 /* Images.xcassets */,
 				80495E891B47A06400F72858 /* LaunchScreen.xib */,
-				80495EA91B47A71C00F72858 /* CommonFMDBUtil */,
+				80495EDA1B47CA0200F72858 /* CommonFMDBUtil */,
+				80495EDE1B47CA0200F72858 /* CommonInfoHelper */,
+				80495EE11B47CA0200F72858 /* CommonSqliteUtil */,
 				80495EBF1B47A8BE00F72858 /* Database */,
 				80495EB51B47A8B400F72858 /* Controller */,
 				80495E7A1B47A06400F72858 /* Supporting Files */,
@@ -170,21 +174,6 @@
 				80495E951B47A06500F72858 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		80495EA91B47A71C00F72858 /* CommonFMDBUtil */ = {
-			isa = PBXGroup;
-			children = (
-				80495EAA1B47A71C00F72858 /* CommonFMDBUtil.h */,
-				80495EAB1B47A71C00F72858 /* CommonFMDBUtil.m */,
-				80495EAC1B47A71C00F72858 /* CommonInfoHelper.h */,
-				80495EAD1B47A71C00F72858 /* CommonInfoHelper.m */,
-				80495EAE1B47A71C00F72858 /* CommonSqliteUtil.h */,
-				80495EAF1B47A71C00F72858 /* CommonSqliteUtil.m */,
-				80495EB01B47A71C00F72858 /* demo.db */,
-			);
-			name = CommonFMDBUtil;
-			path = ../../CommonFMDBUtil;
 			sourceTree = "<group>";
 		};
 		80495EB51B47A8B400F72858 /* Controller */ = {
@@ -220,6 +209,38 @@
 				80495EC61B47A8BE00F72858 /* AccountInfo.m */,
 			);
 			path = Struct;
+			sourceTree = "<group>";
+		};
+		80495EDA1B47CA0200F72858 /* CommonFMDBUtil */ = {
+			isa = PBXGroup;
+			children = (
+				80495EDB1B47CA0200F72858 /* CommonFMDBUtil.h */,
+				80495EDC1B47CA0200F72858 /* CommonFMDBUtil.m */,
+				80495EDD1B47CA0200F72858 /* demo_fmdb.db */,
+			);
+			name = CommonFMDBUtil;
+			path = ../../CommonFMDBUtil;
+			sourceTree = "<group>";
+		};
+		80495EDE1B47CA0200F72858 /* CommonInfoHelper */ = {
+			isa = PBXGroup;
+			children = (
+				80495EDF1B47CA0200F72858 /* CommonInfoHelper.h */,
+				80495EE01B47CA0200F72858 /* CommonInfoHelper.m */,
+			);
+			name = CommonInfoHelper;
+			path = ../../CommonInfoHelper;
+			sourceTree = "<group>";
+		};
+		80495EE11B47CA0200F72858 /* CommonSqliteUtil */ = {
+			isa = PBXGroup;
+			children = (
+				80495EE21B47CA0200F72858 /* CommonSqliteUtil.h */,
+				80495EE31B47CA0200F72858 /* CommonSqliteUtil.m */,
+				80495EE41B47CA0200F72858 /* demo_sqlite.db */,
+			);
+			name = CommonSqliteUtil;
+			path = ../../CommonSqliteUtil;
 			sourceTree = "<group>";
 		};
 		B76B12A61EF46AE6C1D37878 /* Frameworks */ = {
@@ -312,13 +333,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80495EE91B47CA0200F72858 /* demo_sqlite.db in Resources */,
 				80495ED51B47ABC100F72858 /* people_logout.png in Resources */,
 				80495E861B47A06400F72858 /* Main.storyboard in Resources */,
+				80495EE61B47CA0200F72858 /* demo_fmdb.db in Resources */,
 				80495E8B1B47A06400F72858 /* LaunchScreen.xib in Resources */,
 				80495ED01B47A8EE00F72858 /* DBViewController.xib in Resources */,
 				80495E881B47A06400F72858 /* Images.xcassets in Resources */,
 				80495ED61B47ABC100F72858 /* people_test.png in Resources */,
-				80495EB41B47A71C00F72858 /* demo.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,13 +391,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80495EE71B47CA0200F72858 /* CommonInfoHelper.m in Sources */,
 				80495E831B47A06400F72858 /* ViewController.m in Sources */,
-				80495EB11B47A71C00F72858 /* CommonFMDBUtil.m in Sources */,
+				80495EE51B47CA0200F72858 /* CommonFMDBUtil.m in Sources */,
 				80495E801B47A06400F72858 /* AppDelegate.m in Sources */,
 				80495EC91B47A8BE00F72858 /* AccountInfo.m in Sources */,
-				80495EB21B47A71C00F72858 /* CommonInfoHelper.m in Sources */,
-				80495EB31B47A71C00F72858 /* CommonSqliteUtil.m in Sources */,
 				80495EC81B47A8BE00F72858 /* AccountSqliteUtil.m in Sources */,
+				80495EE81B47CA0200F72858 /* CommonSqliteUtil.m in Sources */,
 				80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */,
 				80495EC71B47A8BE00F72858 /* AccountFMDBUtil.m in Sources */,
 				80495E7D1B47A06400F72858 /* main.m in Sources */,
