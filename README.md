@@ -19,7 +19,7 @@ CommonSqliteUtil.podspec别忘了加 s.libraries = "sqlite3"
         ## Screenshots
         ![Example](./Screens/example.gif "Example View")
         ![Example](./Screens/example.png "Example View")
-    ⑥点：一个`开头加一个.结尾
+    ⑥点：一个-开头
 ``` 
 
 ## Example 
