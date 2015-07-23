@@ -13,7 +13,7 @@ CommonSqliteUtil.podspec别忘了加 s.libraries = "sqlite3"
     Readme.md编辑方法：
     ①##是标题，#号的多少表示标题的大小，越多越小
     ②一对```是中间区域加灰色底框，这个常用语突出显示方法实现
-    ③一对`也是中间区域加灰色底框，这个常用于突出显示方法名
+    ③一对`也是中间区域加灰色底框，这个常用于突出显示方法名。如:`commonAdView_setImageView: withImagePath:`
     ④一对[]加一对()表示链接名及链接地址，如[CocoaPods](http://cocoapods.org)
     ⑤图片：感叹号!加一对[],加(),()中的内容为图片当前路径，及在网页上鼠标悬停图片上时，显示的名字
         ## Screenshots
