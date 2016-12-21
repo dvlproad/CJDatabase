@@ -7,38 +7,10 @@
 //
 
 #import "CommonFMDBUtil.h"
-#import <FMDB/FMDB.h>
-
+//#import <FMDB/FMDB.h>
+#import "FMDB.h"
 
 @implementation CommonFMDBUtil
-
-//#define kDBName @"demo.sqlite3"
-static NSString *dbName_fmdb = @"";
-
-
-+ (void)setDataBaseName:(NSString *)name{
-    [self setDataBaseName:name copy:YES];
-}
-
-+ (void)setDataBaseName:(NSString *)name copy:(BOOL)isCopy
-{
-    NSAssert(name, @"name cannot be nil!");
-    
-    dbName_fmdb = name;
-    
-    if (isCopy) {
-        if(![[NSFileManager defaultManager] fileExistsAtPath:[self dbPath]]) {
-            NSString *bundlePath = [[NSBundle mainBundle] pathForResource:dbName_fmdb ofType:nil];//注意如果bundlePath == nil,那请检查Build Phases下的Copy Bundle Resources中是不是没有添加该资源
-            if ([[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
-                [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:[self dbPath] error:nil];
-            }
-            else {
-                NSAssert(NO, @"%@ does not exist!", dbName_fmdb);
-            }
-        }
-    }
-}
-
 
 #pragma mark - create
 
@@ -124,18 +96,8 @@ static NSString *dbName_fmdb = @"";
     return success;
 }
 
-+ (NSString *)dbPath
-{
-    NSAssert(dbName_fmdb, @"dbName cannot be nil!");
-    
-    //return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:dbName];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dbPath = [documentsDirectory stringByAppendingPathComponent:dbName_fmdb];
-    //NSLog(@"数据库存放路径dbPath = %@",dbPath);
-    
-    return dbPath;
++ (NSString *)dbPath {
+    return [CJFMDBFileManager sharedInstance].currentDatabasePath;
 }
-
 
 @end

@@ -1,16 +1,16 @@
 Pod::Spec.new do |s|
   s.name         = "CommonFMDBUtil"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "easier to use FMDB."
   s.homepage     = "https://github.com/dvlproad/CommonFMDBUtil"
   s.license      = "MIT"
-  s.author             = { "dvlproad" => "913168921@qq.com" }
+  s.author             = { "dvlproad" => "studyroad@qq.com" }
   # s.social_media_url   = "http://twitter.com/dvlproad"
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "0.0.2" }
-  s.source_files  = "CommonFMDBUtil/*.{h,m}"
+  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "CommonFMDBUtil_0.0.3" }
+  s.source_files  = "CommonFMDBUtil/**/*.{h,m}"
   s.resources = "CommonFMDBUtil/demofmdb.db"
   s.frameworks = 'UIKit'
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		783F56471E0A72CF005D1608 /* CJFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F56441E0A72CF005D1608 /* CJFileManager.m */; };
+		783F56481E0A72CF005D1608 /* CJFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F56461E0A72CF005D1608 /* CJFMDBFileManager.m */; };
+		783F564B1E0A7371005D1608 /* DemoFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F564A1E0A7371005D1608 /* DemoFMDBFileManager.m */; };
 		7894B3351DB793EB0066C11C /* demofmdb.db in Resources */ = {isa = PBXBuildFile; fileRef = 7894B3341DB793EB0066C11C /* demofmdb.db */; };
 		7894B3371DB793F50066C11C /* demosqlite.db in Resources */ = {isa = PBXBuildFile; fileRef = 7894B3361DB793F50066C11C /* demosqlite.db */; };
 		7894B3611DB79A1F0066C11C /* AccountFMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7894B35B1DB79A1F0066C11C /* AccountFMDBUtil.m */; };
@@ -41,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		783F56431E0A72CF005D1608 /* CJFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFileManager.h; sourceTree = "<group>"; };
+		783F56441E0A72CF005D1608 /* CJFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFileManager.m; sourceTree = "<group>"; };
+		783F56451E0A72CF005D1608 /* CJFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFMDBFileManager.h; sourceTree = "<group>"; };
+		783F56461E0A72CF005D1608 /* CJFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFMDBFileManager.m; sourceTree = "<group>"; };
+		783F56491E0A7371005D1608 /* DemoFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoFMDBFileManager.h; sourceTree = "<group>"; };
+		783F564A1E0A7371005D1608 /* DemoFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoFMDBFileManager.m; sourceTree = "<group>"; };
 		7894B3341DB793EB0066C11C /* demofmdb.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demofmdb.db; sourceTree = "<group>"; };
 		7894B3361DB793F50066C11C /* demosqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demosqlite.db; sourceTree = "<group>"; };
 		7894B35A1DB79A1F0066C11C /* AccountFMDBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountFMDBUtil.h; sourceTree = "<group>"; };
@@ -109,6 +118,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		783F56421E0A72CF005D1608 /* CJFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				783F56431E0A72CF005D1608 /* CJFileManager.h */,
+				783F56441E0A72CF005D1608 /* CJFileManager.m */,
+				783F56451E0A72CF005D1608 /* CJFMDBFileManager.h */,
+				783F56461E0A72CF005D1608 /* CJFMDBFileManager.m */,
+			);
+			path = CJFileManager;
+			sourceTree = "<group>";
+		};
 		7894B3591DB79A1F0066C11C /* DBUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +137,8 @@
 				7894B35C1DB79A1F0066C11C /* AccountSqliteUtil.h */,
 				7894B35D1DB79A1F0066C11C /* AccountSqliteUtil.m */,
 				7894B35E1DB79A1F0066C11C /* Model */,
+				783F56491E0A7371005D1608 /* DemoFMDBFileManager.h */,
+				783F564A1E0A7371005D1608 /* DemoFMDBFileManager.m */,
 			);
 			path = DBUtil;
 			sourceTree = "<group>";
@@ -216,6 +238,7 @@
 			children = (
 				80495EDB1B47CA0200F72858 /* CommonFMDBUtil.h */,
 				80495EDC1B47CA0200F72858 /* CommonFMDBUtil.m */,
+				783F56421E0A72CF005D1608 /* CJFileManager */,
 				7894B3341DB793EB0066C11C /* demofmdb.db */,
 			);
 			name = CommonFMDBUtil;
@@ -398,9 +421,12 @@
 				80495E831B47A06400F72858 /* ViewController.m in Sources */,
 				80495EE51B47CA0200F72858 /* CommonFMDBUtil.m in Sources */,
 				80495E801B47A06400F72858 /* AppDelegate.m in Sources */,
+				783F564B1E0A7371005D1608 /* DemoFMDBFileManager.m in Sources */,
 				80495EE81B47CA0200F72858 /* CommonSqliteUtil.m in Sources */,
 				80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */,
+				783F56481E0A72CF005D1608 /* CJFMDBFileManager.m in Sources */,
 				80495E7D1B47A06400F72858 /* main.m in Sources */,
+				783F56471E0A72CF005D1608 /* CJFileManager.m in Sources */,
 				80495ECF1B47A8EE00F72858 /* DBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

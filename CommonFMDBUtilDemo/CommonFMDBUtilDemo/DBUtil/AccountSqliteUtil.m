@@ -8,6 +8,8 @@
 
 #import "AccountSqliteUtil.h"
 
+static NSString *kCurrentTableName = @"ACCOUNT";
+
 @implementation AccountSqliteUtil
 
 AccountInfo* transformToInfoByStmt_pFun(sqlite3_stmt *stmt){
@@ -69,7 +71,7 @@ AccountInfo* transformToInfoByStmt_pFun(sqlite3_stmt *stmt){
     NSAssert(info, @"info cannot be nil!");
     
     NSString *sql = [NSString stringWithFormat:
-                     @"INSERT OR REPLACE INTO ACCOUNT (uid, name, email, pasd, imageName, imageUrl, imagePath, modified, execTypeL) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')", info.uid, info.name, info.email, info.pasd, info.imageName, info.imageUrl, info.imagePath, info.modified, info.execTypeL];//DB Error: 1 "unrecognized token: ":"" 即要求插入的字符串需加引号'，而对于表名，属性名，可以不用像原来那样添加。
+                     @"INSERT OR REPLACE INTO %@ (uid, name, email, pasd, imageName, imageUrl, imagePath, modified, execTypeL) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')", kCurrentTableName, info.uid, info.name, info.email, info.pasd, info.imageName, info.imageUrl, info.imagePath, info.modified, info.execTypeL];//DB Error: 1 "unrecognized token: ":"" 即要求插入的字符串需加引号'，而对于表名，属性名，可以不用像原来那样添加。
     
     return [CommonSqliteUtil insert:sql values:nil];
 }
@@ -80,7 +82,7 @@ AccountInfo* transformToInfoByStmt_pFun(sqlite3_stmt *stmt){
 {
     NSAssert(name, @"name cannot be nil!");
     
-    NSString *sql = [NSString stringWithFormat:@"delete from ACCOUNT where name = '%@'",name];
+    NSString *sql = [NSString stringWithFormat:@"delete from %@ where name = '%@'",kCurrentTableName, name];
     
     return [CommonSqliteUtil remove:sql values:nil];
 }
@@ -92,27 +94,27 @@ AccountInfo* transformToInfoByStmt_pFun(sqlite3_stmt *stmt){
     NSAssert(info, @"info cannot be nil!");
     
     NSString *sql = [NSString stringWithFormat:
-                     @"UPDATE ACCOUNT SET name = '%@', email = '%@', pasd = '%@', imageName = '%@', imageUrl = '%@', imagePath = '%@' WHERE uid = '%@'",
+                     @"UPDATE %@ SET name = '%@', email = '%@', pasd = '%@', imageName = '%@', imageUrl = '%@', imagePath = '%@' WHERE uid = '%@'", kCurrentTableName,
                      info.name, info.email, info.pasd, info.imageName, info.imageUrl, info.imagePath, uid];
     return [CommonSqliteUtil update:sql values:nil];
 }
 
 + (BOOL)updateInfoImagePath:(NSString *)imagePath whereUID:(NSString *)uid{
     NSString *sql = [NSString stringWithFormat:
-                     @"update ACCOUNT set imagePath = '%@' where uid = '%@'", imagePath, uid];
+                     @"update %@ set imagePath = '%@' where uid = '%@'", kCurrentTableName, imagePath, uid];
     return [CommonSqliteUtil update:sql values:nil];
 }
 
 
 + (BOOL)updateInfoImageUrl:(NSString *)imageUrl whereUID:(NSString *)uid{
     NSString *sql = [NSString stringWithFormat:
-                     @"update ACCOUNT set imageUrl = '%@' where uid = '%@'", imageUrl, uid];
+                     @"update %@ set imageUrl = '%@' where uid = '%@'", kCurrentTableName, imageUrl, uid];
     return [CommonSqliteUtil update:sql values:nil];
 }
 
 + (BOOL)updateInfoExecTypeL:(NSString *)execTypeL whereUID:(NSString *)uid{
     NSString *sql = [NSString stringWithFormat:
-                     @"update ACCOUNT set execTypeL = '%@' where uid = '%@'", execTypeL, uid];
+                     @"update %@ set execTypeL = '%@' where uid = '%@'", kCurrentTableName, execTypeL, uid];
     return [CommonSqliteUtil update:sql values:nil];
 }
 
@@ -122,7 +124,7 @@ AccountInfo* transformToInfoByStmt_pFun(sqlite3_stmt *stmt){
 {
     NSAssert(uid, @"uid cannot be nil!");
     
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM ACCOUNT where uid = '%@'", uid];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ where uid = '%@'", kCurrentTableName, uid];
     
     //方法①：使用block方式
     NSArray *result = [CommonSqliteUtil query:sql values:nil block:^id(sqlite3_stmt *stmt) {
@@ -138,7 +140,7 @@ AccountInfo* transformToInfoByStmt_pFun(sqlite3_stmt *stmt){
 //为了在登录页面上，输入名字的时候可以显示出已经登录过的头像而加入的方法
 + (UIImage *)selectImageWhereName:(NSString *)name
 {
-    NSString *sql = [NSString stringWithFormat:@"SELECT imagePath FROM ACCOUNT where name = '%@'", name];
+    NSString *sql = [NSString stringWithFormat:@"SELECT imagePath FROM %@ where name = '%@'", kCurrentTableName, name];
     
     //方法①：使用block方式
     NSArray *result = [CommonSqliteUtil query:sql values:nil block:^id(sqlite3_stmt *stmt) {

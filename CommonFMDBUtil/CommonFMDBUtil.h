@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CJFMDBFileManager.h"
 
-@interface CommonFMDBUtil : NSObject
-
-+ (void)setDataBaseName:(NSString *)name;
+@interface CommonFMDBUtil : NSObject {
+    
+}
 
 + (BOOL)create:(NSString *)sql;
 

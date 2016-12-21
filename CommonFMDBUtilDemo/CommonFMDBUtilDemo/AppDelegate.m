@@ -10,6 +10,7 @@
 
 #ifdef USE_CommonFMDBUtil
     #import "CommonFMDBUtil.h"
+    #import "DemoFMDBFileManager.h"
 #else
     #import "CommonSqliteUtil.h"
 #endif
@@ -31,7 +32,7 @@
     
     
 #ifdef USE_CommonFMDBUtil
-    [CommonFMDBUtil setDataBaseName:@"demofmdb.db"];
+    [DemoFMDBFileManager createDatabase:@"demofmdb.db"];
 #else
     [CommonSqliteUtil setDataBaseName:@"demosqlite.db"];
 #endif
