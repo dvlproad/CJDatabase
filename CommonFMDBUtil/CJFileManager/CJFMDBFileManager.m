@@ -24,9 +24,8 @@
 #pragma mark - 文件操作
 /** 完整的描述请参见文件头部 */
 - (BOOL)deleteCurrentFMDBFile {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *fileName = [userDefaults objectForKey:CJFMDBFileName];
-    NSString *subDirectoryPath = [userDefaults objectForKey:CJFMDBFileDirectory];
+    NSString *fileName = self.databaseName;
+    NSString *subDirectoryPath = self.databaseDirectory;
     
 //    NSString *filePath = [CJFileManager getFilePathWithFileName:fileName
 //                                               subDirectoryPath:subDirectoryPath
@@ -40,20 +39,19 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL deleteFileSuccess = [fileManager removeItemAtPath:filePath error:nil];
     if (deleteFileSuccess) {
-        [userDefaults removeObjectForKey:CJFMDBFileName];
+        self.databaseName = nil;
     }
     return deleteFileSuccess;
 }
 
 /** 完整的描述请参见文件头部 */
-- (BOOL)deleteFMDBDirectory {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *subDirectoryPath = [userDefaults objectForKey:CJFMDBFileDirectory];
+- (BOOL)deleteCurrentFMDBDirectory {
+    NSString *subDirectoryPath = self.databaseDirectory;
     
     BOOL deleteDirectorySuccess = [CJFileManager deleteDirectoryBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory];
     if (deleteDirectorySuccess) {
-        [userDefaults removeObjectForKey:CJFMDBFileDirectory];
-        [userDefaults removeObjectForKey:CJFMDBFileName];
+        self.databaseDirectory = nil;
+        self.databaseName = nil;
     }
     
     return deleteDirectorySuccess;
@@ -79,10 +77,8 @@
                        copy:(BOOL)isCopy {
     NSAssert(databaseName, @"name cannot be nil!");
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:subDirectoryPath forKey:CJFMDBFileDirectory];
-    [userDefaults setObject:databaseName forKey:CJFMDBFileName];
-    [userDefaults synchronize];
+    self.databaseName = databaseName;
+    self.databaseDirectory = subDirectoryPath;
     
     NSString *databasePath = [self getDatabasePathWithName:databaseName
                                           subDirectoryPath:subDirectoryPath];
@@ -107,10 +103,8 @@
               subDirectoryPath:(NSString *)subDirectoryPath
                createTableSqls:(NSArray<NSString *> *)createTableSqls {
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:subDirectoryPath forKey:CJFMDBFileDirectory];
-    [userDefaults setObject:databaseName forKey:CJFMDBFileName];
-    [userDefaults synchronize];
+    self.databaseName = databaseName;
+    self.databaseDirectory = subDirectoryPath;
     
     NSString *databasePath = [self getDatabasePathWithName:databaseName
                                           subDirectoryPath:subDirectoryPath];
@@ -147,9 +141,8 @@
         return _currentDatabasePath;
     }
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *databaseName = [userDefaults objectForKey:CJFMDBFileName];
-    NSString *subDirectoryPath = [userDefaults objectForKey:CJFMDBFileDirectory];
+    NSString *databaseName = self.databaseName;
+    NSString *subDirectoryPath = self.databaseDirectory;
     
     NSString *databaseDirectory = [CJFileManager getDirectoryPathBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory createIfNoExist:YES];
     NSString *databasePath = [databaseDirectory stringByAppendingPathComponent:databaseName];

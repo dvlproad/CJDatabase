@@ -8,13 +8,12 @@
 
 #import "CJFileManager.h"
 
-static NSString *CJFMDBFileDirectory = @"CJFMDBFileDirectory";
-static NSString *CJFMDBFileName = @"CJFMDBFileName";
-
 @interface CJFMDBFileManager : CJFileManager {
     
 }
-@property (nonatomic, strong) NSString *currentDatabasePath;/**< 当前数据库路径 */
+@property (nonatomic, copy) NSString *databaseDirectory;
+@property (nonatomic, copy) NSString *databaseName;
+@property (nonatomic, copy) NSString *currentDatabasePath;/**< 当前数据库路径 */
 
 /**
  *  创建单例
@@ -35,7 +34,7 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
  *
  *  return 是否删除成功
  */
-- (BOOL)deleteFMDBDirectory;
+- (BOOL)deleteCurrentFMDBDirectory;
 
 
 /**
