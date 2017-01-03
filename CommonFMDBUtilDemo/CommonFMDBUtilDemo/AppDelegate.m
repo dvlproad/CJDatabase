@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 
 #ifdef USE_CommonFMDBUtil
-    #import "CommonFMDBUtil.h"
-    #import "DemoFMDBFileManager.h"
+    #import "FirstFMDBFileManager.h"
+    #import "SecondFMDBFileManager.h"
 #else
     #import "CommonSqliteUtil.h"
 #endif
@@ -32,7 +32,9 @@
     
     
 #ifdef USE_CommonFMDBUtil
-    [DemoFMDBFileManager createDatabase:@"demofmdb.db"];
+    [[FirstFMDBFileManager sharedInstance] deleteCurrentFMDBFile];
+    [[FirstFMDBFileManager sharedInstance] copyBundleDatabase:@"demofmdb.db" toSubDirectoryPath:nil ifExistDeleteFirst:YES];
+    [[SecondFMDBFileManager sharedInstance] copyBundleDatabase:@"demosqlite.db" toSubDirectoryPath:@"DB/Sqlite" ifExistDeleteFirst:YES];
 #else
     [CommonSqliteUtil setDataBaseName:@"demosqlite.db"];
 #endif

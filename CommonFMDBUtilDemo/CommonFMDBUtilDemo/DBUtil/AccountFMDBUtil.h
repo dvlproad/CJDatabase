@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 ciyouzen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "CommonFMDBUtil.h"
+#import "FirstFMDBFileManager.h"
 #import "AccountInfo.h"
+
 
 @interface AccountFMDBUtil : NSObject
 

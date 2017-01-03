@@ -9,117 +9,85 @@
 #import "CJFMDBFileManager.h"
 #import "FMDB.h"
 
+static NSString *CJFMDBFileManagerDBName = @"CJFMDBFileManagerDBName";/**< 该数据库管理器被用来管理哪个数据库(如果为空，则表示该数据库管理器未被使用来管理任何数据库)  */
+static NSString *CJFMDBFileDirectory = @"CJFMDBFileDirectory";
+static NSString *CJFMDBFileName = @"CJFMDBFileName";
+
+@interface CJFMDBFileManager ()
+
+@property (nonatomic, copy) NSString *databasePath;   /**< 当前数据库路径 */
+
+@end
+
 @implementation CJFMDBFileManager
 
+#pragma mark - 创建数据库、数据表
 /** 完整的描述请参见文件头部 */
-+ (CJFMDBFileManager *)sharedInstance {
-    static CJFMDBFileManager *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[self alloc] init];
-    });
-    return _sharedInstance;
-}
-
-#pragma mark - 文件操作
-/** 完整的描述请参见文件头部 */
-- (BOOL)deleteCurrentFMDBFile {
-    NSString *fileName = self.databaseName;
-    NSString *subDirectoryPath = self.databaseDirectory;
-    
-//    NSString *filePath = [CJFileManager getFilePathWithFileName:fileName
-//                                               subDirectoryPath:subDirectoryPath
-//                                          inSearchPathDirectory:NSDocumentDirectory];
-    NSString *filePath = [self getDatabasePathWithName:fileName
-                                      subDirectoryPath:subDirectoryPath];
-    if ([filePath length] == 0) {
-        NSLog(@"%@文件不存在，默认删除成功", fileName);
-    }
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL deleteFileSuccess = [fileManager removeItemAtPath:filePath error:nil];
-    if (deleteFileSuccess) {
-        self.databaseName = nil;
-    }
-    return deleteFileSuccess;
+- (BOOL)copyBundleDatabase:(NSString *)databaseName
+        toSubDirectoryPath:(NSString *)subDirectoryPath {
+    return [self copyBundleDatabase:databaseName
+                 toSubDirectoryPath:subDirectoryPath
+                 ifExistDeleteFirst:NO];
 }
 
 /** 完整的描述请参见文件头部 */
-- (BOOL)deleteCurrentFMDBDirectory {
-    NSString *subDirectoryPath = self.databaseDirectory;
+- (BOOL)copyBundleDatabase:(NSString *)databaseName
+        toSubDirectoryPath:(NSString *)subDirectoryPath
+        ifExistDeleteFirst:(BOOL)ifExistDeleteFirst {
     
-    BOOL deleteDirectorySuccess = [CJFileManager deleteDirectoryBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory];
-    if (deleteDirectorySuccess) {
-        self.databaseDirectory = nil;
-        self.databaseName = nil;
-    }
+    NSString *databasePath = [self setDatabaseName:databaseName subDirectoryPath:subDirectoryPath ifExistDeleteFirst:ifExistDeleteFirst];
     
-    return deleteDirectorySuccess;
-}
-
-
-#pragma mark - 创建数据库方法1
-/** 完整的描述请参见文件头部 */
-- (void)copyDatabaseWithName:(NSString *)databaseName
-            toSubDirectoryPath:(NSString *)subDirectoryPath {
-    [self setDatabaseWithName:databaseName subDirectoryPath:subDirectoryPath copy:YES];
-}
-
-/**
- *  设置数据库
- *
- *  @param databaseName     数据库名字
- *  @param subDirectoryPath subDirectoryPath
- *  @param isCopy           是否复制
- */
-- (void)setDatabaseWithName:(NSString *)databaseName
-           subDirectoryPath:(NSString *)subDirectoryPath
-                       copy:(BOOL)isCopy {
-    NSAssert(databaseName, @"name cannot be nil!");
-    
-    self.databaseName = databaseName;
-    self.databaseDirectory = subDirectoryPath;
-    
-    NSString *databasePath = [self getDatabasePathWithName:databaseName
-                                          subDirectoryPath:subDirectoryPath];
-    [CJFMDBFileManager sharedInstance].currentDatabasePath = databasePath;
-    
-    if (isCopy) {
-        if(![[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
-            NSString *bundlePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:nil];//注意如果bundlePath == nil,那请检查Build Phases下的Copy Bundle Resources中是不是没有添加该资源
-            if ([[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
-                [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:databasePath error:nil];
-            }
-            else {
-                NSAssert(NO, @"%@ does not exist!", databaseName);
+    //复制文件到我们指定的目录
+    BOOL copySuccess = NO;
+    if([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
+        NSAssert(NO, @"复制mainBundle中的数据库到指定目录失败，因为该目录已存在同名文件%@ !", databasePath);
+        
+    } else {
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:nil];//注意如果bundlePath == nil,那请检查Build Phases下的Copy Bundle Resources中是不是没有添加该资源
+        if (![[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
+            NSAssert(NO, @"复制数据库文件到指定目录失败，因为要复制的数据库文件不存在：%@!", databaseName);
+            
+        } else {
+            NSError *error = nil;
+            copySuccess = [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:databasePath error:&error];
+            if (copySuccess) {
+                NSLog(@"复制数据库文件到指定目录%@成功", databasePath);
+            } else {
+                NSLog(@"复制数据库文件到指定目录%@失败，因为%@", databasePath, [error localizedDescription]);
             }
         }
     }
+    return copySuccess;
 }
 
-#pragma mark - 创建数据库方法2
 /** 完整的描述请参见文件头部 */
 - (void)createDatabaseWithName:(NSString *)databaseName
               subDirectoryPath:(NSString *)subDirectoryPath
                createTableSqls:(NSArray<NSString *> *)createTableSqls {
+    [self createDatabaseWithName:databaseName
+                subDirectoryPath:subDirectoryPath
+                 createTableSqls:createTableSqls
+              ifExistDeleteFirst:NO];
+}
+
+/** 完整的描述请参见文件头部 */
+- (void)createDatabaseWithName:(NSString *)databaseName
+              subDirectoryPath:(NSString *)subDirectoryPath
+               createTableSqls:(NSArray<NSString *> *)createTableSqls
+            ifExistDeleteFirst:(BOOL)ifExistDeleteFirst {
     
-    self.databaseName = databaseName;
-    self.databaseDirectory = subDirectoryPath;
+    NSString *databasePath = [self setDatabaseName:databaseName subDirectoryPath:subDirectoryPath ifExistDeleteFirst:ifExistDeleteFirst];
     
-    NSString *databasePath = [self getDatabasePathWithName:databaseName
-                                          subDirectoryPath:subDirectoryPath];
-    [CJFMDBFileManager sharedInstance].currentDatabasePath = databasePath;
-    
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:databasePath]) {
-        NSLog(@"数据库已存在");
+    if ([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
+        NSAssert(NO, @"创建数据库到指定目录失败，因为该目录已存在同名文件%@ !", databasePath);
         
     } else {
-        NSLog(@"还未创建数据库，现在正在创建数据库");
-        
         FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
-        if ([db open]) { //执行open的时候，如果数据库不存在则会自动创建
+        if (![db open]) { //执行open的时候，如果数据库不存在则会自动创建
+            NSAssert(NO, @"创建数据库文件失败!", databaseName);
+            
+        } else {
+            NSLog(@"创建数据库到指定目录%@成功", databasePath);
             for (NSString *createTableSql in createTableSqls) {
                 BOOL result = [db executeUpdate:createTableSql];
                 if (result == NO) {
@@ -128,29 +96,204 @@
             }
             
             [db close];
-            
-        } else {
-            NSLog(@"database open error");
         }
     }
 }
 
-#pragma mark - Private
-- (NSString *)currentDatabasePath {
-    if (_currentDatabasePath && [_currentDatabasePath length] > 0) {
-        return _currentDatabasePath;
+#pragma mark - 删除数据库目录/数据库文件
+/** 完整的描述请参见文件头部 */
+- (BOOL)deleteCurrentFMDBFile {
+    NSString *subDirectoryPath = self.databaseDirectory; //不使用此方法的原因：重启后内存释放会导致获取不到
+    NSString *fileName = self.databaseName;
+    if ([fileName length] == 0) {
+        NSLog(@"删除数据库文件时候，获取不到文件名（原因可能为重启后内存释放）,故这里改为通过plist方式获取");
+        
+        NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+        NSString *subDirectoryPathKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileDirectory];
+        NSString *fileNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        subDirectoryPath = [userDefaults objectForKey:subDirectoryPathKey];
+        fileName = [userDefaults objectForKey:fileNameKey];
     }
     
-    NSString *databaseName = self.databaseName;
-    NSString *subDirectoryPath = self.databaseDirectory;
+    if ([fileName length] == 0) {
+        NSLog(@"删除数据库文件时候，还是获取不到文件名，默认删除成功(有可能是重复删除)");
+        return YES;
+    }
     
-    NSString *databaseDirectory = [CJFileManager getDirectoryPathBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory createIfNoExist:YES];
-    NSString *databasePath = [databaseDirectory stringByAppendingPathComponent:databaseName];
-    _currentDatabasePath = databasePath;
+    //    NSString *filePath = [CJFileManager getFilePathWithFileName:fileName
+    //                                               subDirectoryPath:subDirectoryPath
+    //                                          inSearchPathDirectory:NSDocumentDirectory];
+    NSString *filePath = [self getDatabasePathWithName:fileName
+                                      subDirectoryPath:subDirectoryPath];
+    if ([filePath length] == 0) {
+        NSLog(@"删除数据库文件时候，%@文件不存在，默认删除成功", fileName);
+    }
     
-    return _currentDatabasePath;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL deleteFileSuccess = [fileManager removeItemAtPath:filePath error:nil];
+    if (deleteFileSuccess) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+        NSString *fileNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+        
+        [userDefaults removeObjectForKey:fileNameKey];
+        _databaseName = nil;
+    }
+    NSLog(@"删除数据库文件%@%@", filePath, deleteFileSuccess ? @"成功" : @"失败");
+    return deleteFileSuccess;
 }
 
+/** 完整的描述请参见文件头部 */
+- (BOOL)deleteCurrentFMDBDirectory {
+    NSString *subDirectoryPath = self.databaseDirectory; //重启后为空
+    if (subDirectoryPath == nil) {
+        NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+        NSString *subDirectoryPathKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileDirectory];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        subDirectoryPath = [userDefaults objectForKey:subDirectoryPathKey];
+    }
+    
+    BOOL deleteDirectorySuccess = [CJFileManager deleteDirectoryBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory];
+    if (deleteDirectorySuccess) {
+        NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+        NSString *subDirectoryPathKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileDirectory];
+        NSString *fileNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        [userDefaults removeObjectForKey:subDirectoryPathKey];
+        [userDefaults removeObjectForKey:fileNameKey];
+        _databaseDirectory = nil;
+        _databaseName = nil;
+    }
+    
+    return deleteDirectorySuccess;
+}
+
+
+
+#pragma mark - 数据库表操作
+- (BOOL)create:(NSString *)sql {
+    NSAssert(sql, @"sql cannot be nil!");
+    
+    return [self executeUpdate:sql args:nil];
+}
+
+
+- (BOOL)insert:(NSString *)sql {
+    NSAssert(sql, @"sql cannot be nil!");
+    
+    return [self executeUpdate:sql args:nil];
+}
+
+- (BOOL)remove:(NSString *)sql {
+    NSAssert(sql, @"sql cannot be nil!");
+    
+    return [self executeUpdate:sql args:nil];
+}
+
+- (BOOL)update:(NSString *)sql {
+    NSAssert(sql, @"sql cannot be nil!");
+    
+    return [self executeUpdate:sql args:nil];
+}
+
+- (NSMutableArray *)query:(NSString *)sql
+{
+    NSAssert(sql, @"sql cannot be nil!");
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
+    
+    if ([db open]) {
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            [result addObject:[rs resultDictionary]];
+        }
+        
+        [db close];
+    }
+    
+    db = nil;
+    
+    return result;
+}
+
+
+
+#pragma mark - private method
+
+- (BOOL)executeUpdate:(NSString *)sql args:(NSArray *)args
+{
+    BOOL success = NO;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
+    
+    if ([db open]) {
+        success = [db executeUpdate:sql withArgumentsInArray:args];
+        
+        [db close];
+    }
+    
+    db = nil;
+    
+    return success;
+}
+
+- (NSString *)setDatabaseName:(NSString *)databaseName subDirectoryPath:(NSString *)subDirectoryPath ifExistDeleteFirst:(BOOL)ifExistDeleteFirst {
+    NSAssert(databaseName, @"databaseName cannot be nil!");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+    NSString *managerDBNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileManagerDBName];
+    NSString *managerDBName = [userDefaults objectForKey:managerDBNameKey];
+    if ([managerDBName length] > 0 && ![managerDBName isEqualToString:databaseName]) {
+        NSLog(@"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@", NSStringFromClass([self class]), managerDBName, databaseName);
+        NSAssert(NO, @"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@", NSStringFromClass([self class]), managerDBName, databaseName);
+    }
+    [userDefaults setObject:databaseName forKey:managerDBNameKey];
+    
+    if (ifExistDeleteFirst) {
+        [self deleteCurrentFMDBFile];
+    }
+    
+    
+    NSString *subDirectoryPathKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileDirectory];
+    NSString *databaseNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+    //NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:subDirectoryPath forKey:subDirectoryPathKey];
+    [userDefaults setObject:databaseName forKey:databaseNameKey];
+    [userDefaults synchronize];
+    
+    _databaseName = databaseName;
+    _databaseDirectory = subDirectoryPath;
+    
+    NSString *databasePath = [self getDatabasePathWithName:databaseName
+                                          subDirectoryPath:subDirectoryPath];
+    
+    _databasePath = databasePath;
+    return databasePath;
+}
+
+
+- (NSString *)databasePath {
+    if (_databasePath && [_databasePath length] > 0) {
+        return _databasePath;
+    }
+    
+    NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+    NSString *subDirectoryPathKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileDirectory];
+    NSString *fileNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *subDirectoryPath = [userDefaults objectForKey:subDirectoryPathKey];
+    NSString *fileName = [userDefaults objectForKey:fileNameKey];
+    
+    NSString *databasePath = [self getDatabasePathWithName:fileName subDirectoryPath:subDirectoryPath];
+    _databasePath = databasePath;
+    
+    return _databasePath;
+}
 
 /**
  *  获取数据库路径
@@ -165,9 +308,10 @@
                      subDirectoryPath:(NSString *)subDirectoryPath {
     NSString *databaseDirectory = [CJFileManager getDirectoryPathBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory createIfNoExist:YES];
     NSString *databasePath = [databaseDirectory stringByAppendingPathComponent:databaseName];
-    NSLog(@"数据库路径 = %@", databasePath);
+    //NSLog(@"数据库路径 = %@", databasePath);
     
     return databasePath;
 }
+
 
 @end
