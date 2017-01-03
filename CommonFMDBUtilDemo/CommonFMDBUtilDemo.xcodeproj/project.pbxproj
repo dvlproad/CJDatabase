@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		780973561E1B69BA0017F1B9 /* SecondFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780973551E1B69BA0017F1B9 /* SecondFMDBFileManager.m */; };
+		7809736B1E1B6E160017F1B9 /* CJFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780973671E1B6E160017F1B9 /* CJFileManager.m */; };
+		7809736C1E1B6E160017F1B9 /* CJFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780973691E1B6E160017F1B9 /* CJFMDBFileManager.m */; };
+		7809736D1E1B6E160017F1B9 /* demofmdb.db in Resources */ = {isa = PBXBuildFile; fileRef = 7809736A1E1B6E160017F1B9 /* demofmdb.db */; };
 		7817ED551E17D7C00003D974 /* CommonInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817ED541E17D7C00003D974 /* CommonInfoHelper.m */; };
-		7817ED5F1E17D8A60003D974 /* CJFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817ED591E17D8A60003D974 /* CJFileManager.m */; };
-		7817ED601E17D8A60003D974 /* CJFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817ED5B1E17D8A60003D974 /* CJFMDBFileManager.m */; };
-		7817ED611E17D8A60003D974 /* CommonFMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817ED5D1E17D8A60003D974 /* CommonFMDBUtil.m */; };
-		7817ED621E17D8A60003D974 /* demofmdb.db in Resources */ = {isa = PBXBuildFile; fileRef = 7817ED5E1E17D8A60003D974 /* demofmdb.db */; };
 		783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F564A1E0A7371005D1608 /* FirstFMDBFileManager.m */; };
 		7894B3371DB793F50066C11C /* demosqlite.db in Resources */ = {isa = PBXBuildFile; fileRef = 7894B3361DB793F50066C11C /* demosqlite.db */; };
 		7894B3611DB79A1F0066C11C /* AccountFMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7894B35B1DB79A1F0066C11C /* AccountFMDBUtil.m */; };
@@ -47,15 +46,13 @@
 /* Begin PBXFileReference section */
 		780973541E1B69BA0017F1B9 /* SecondFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondFMDBFileManager.h; sourceTree = "<group>"; };
 		780973551E1B69BA0017F1B9 /* SecondFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondFMDBFileManager.m; sourceTree = "<group>"; };
+		780973661E1B6E160017F1B9 /* CJFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFileManager.h; sourceTree = "<group>"; };
+		780973671E1B6E160017F1B9 /* CJFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFileManager.m; sourceTree = "<group>"; };
+		780973681E1B6E160017F1B9 /* CJFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFMDBFileManager.h; sourceTree = "<group>"; };
+		780973691E1B6E160017F1B9 /* CJFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFMDBFileManager.m; sourceTree = "<group>"; };
+		7809736A1E1B6E160017F1B9 /* demofmdb.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demofmdb.db; sourceTree = "<group>"; };
 		7817ED531E17D7C00003D974 /* CommonInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoHelper.h; sourceTree = "<group>"; };
 		7817ED541E17D7C00003D974 /* CommonInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoHelper.m; sourceTree = "<group>"; };
-		7817ED581E17D8A60003D974 /* CJFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFileManager.h; sourceTree = "<group>"; };
-		7817ED591E17D8A60003D974 /* CJFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFileManager.m; sourceTree = "<group>"; };
-		7817ED5A1E17D8A60003D974 /* CJFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFMDBFileManager.h; sourceTree = "<group>"; };
-		7817ED5B1E17D8A60003D974 /* CJFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFMDBFileManager.m; sourceTree = "<group>"; };
-		7817ED5C1E17D8A60003D974 /* CommonFMDBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFMDBUtil.h; sourceTree = "<group>"; };
-		7817ED5D1E17D8A60003D974 /* CommonFMDBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFMDBUtil.m; sourceTree = "<group>"; };
-		7817ED5E1E17D8A60003D974 /* demofmdb.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demofmdb.db; sourceTree = "<group>"; };
 		783F56491E0A7371005D1608 /* FirstFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFMDBFileManager.h; sourceTree = "<group>"; };
 		783F564A1E0A7371005D1608 /* FirstFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFMDBFileManager.m; sourceTree = "<group>"; };
 		7894B3361DB793F50066C11C /* demosqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demosqlite.db; sourceTree = "<group>"; };
@@ -121,6 +118,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		780973641E1B6E160017F1B9 /* CJFMDBFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				780973651E1B6E160017F1B9 /* CJFileManager */,
+				780973681E1B6E160017F1B9 /* CJFMDBFileManager.h */,
+				780973691E1B6E160017F1B9 /* CJFMDBFileManager.m */,
+				7809736A1E1B6E160017F1B9 /* demofmdb.db */,
+			);
+			name = CJFMDBFileManager;
+			path = ../../CJFMDBFileManager;
+			sourceTree = "<group>";
+		};
+		780973651E1B6E160017F1B9 /* CJFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				780973661E1B6E160017F1B9 /* CJFileManager.h */,
+				780973671E1B6E160017F1B9 /* CJFileManager.m */,
+			);
+			path = CJFileManager;
+			sourceTree = "<group>";
+		};
 		7817ED521E17D7C00003D974 /* CommonInfoHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,29 +147,6 @@
 			);
 			name = CommonInfoHelper;
 			path = ../../CommonInfoHelper;
-			sourceTree = "<group>";
-		};
-		7817ED561E17D8A60003D974 /* CommonFMDBUtil */ = {
-			isa = PBXGroup;
-			children = (
-				7817ED571E17D8A60003D974 /* CJFileManager */,
-				7817ED5C1E17D8A60003D974 /* CommonFMDBUtil.h */,
-				7817ED5D1E17D8A60003D974 /* CommonFMDBUtil.m */,
-				7817ED5E1E17D8A60003D974 /* demofmdb.db */,
-			);
-			name = CommonFMDBUtil;
-			path = ../../CommonFMDBUtil;
-			sourceTree = "<group>";
-		};
-		7817ED571E17D8A60003D974 /* CJFileManager */ = {
-			isa = PBXGroup;
-			children = (
-				7817ED581E17D8A60003D974 /* CJFileManager.h */,
-				7817ED591E17D8A60003D974 /* CJFileManager.m */,
-				7817ED5A1E17D8A60003D974 /* CJFMDBFileManager.h */,
-				7817ED5B1E17D8A60003D974 /* CJFMDBFileManager.m */,
-			);
-			path = CJFileManager;
 			sourceTree = "<group>";
 		};
 		7894B3591DB79A1F0066C11C /* DBUtil */ = {
@@ -206,7 +201,7 @@
 				80495E7F1B47A06400F72858 /* AppDelegate.m */,
 				80495E811B47A06400F72858 /* ViewController.h */,
 				80495E821B47A06400F72858 /* ViewController.m */,
-				7817ED561E17D8A60003D974 /* CommonFMDBUtil */,
+				780973641E1B6E160017F1B9 /* CJFMDBFileManager */,
 				7817ED521E17D7C00003D974 /* CommonInfoHelper */,
 				7894B3591DB79A1F0066C11C /* DBUtil */,
 				80495E841B47A06400F72858 /* Main.storyboard */,
@@ -366,7 +361,7 @@
 				80495E861B47A06400F72858 /* Main.storyboard in Resources */,
 				80495E8B1B47A06400F72858 /* LaunchScreen.xib in Resources */,
 				80495ED01B47A8EE00F72858 /* DBViewController.xib in Resources */,
-				7817ED621E17D8A60003D974 /* demofmdb.db in Resources */,
+				7809736D1E1B6E160017F1B9 /* demofmdb.db in Resources */,
 				80495E881B47A06400F72858 /* Images.xcassets in Resources */,
 				80495ED61B47ABC100F72858 /* people_test.png in Resources */,
 			);
@@ -422,16 +417,15 @@
 				7894B3611DB79A1F0066C11C /* AccountFMDBUtil.m in Sources */,
 				7894B3621DB79A1F0066C11C /* AccountSqliteUtil.m in Sources */,
 				7894B3631DB79A1F0066C11C /* AccountInfo.m in Sources */,
-				7817ED611E17D8A60003D974 /* CommonFMDBUtil.m in Sources */,
 				7817ED551E17D7C00003D974 /* CommonInfoHelper.m in Sources */,
 				80495E831B47A06400F72858 /* ViewController.m in Sources */,
 				80495E801B47A06400F72858 /* AppDelegate.m in Sources */,
 				783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */,
 				80495EE81B47CA0200F72858 /* CommonSqliteUtil.m in Sources */,
 				80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */,
-				7817ED601E17D8A60003D974 /* CJFMDBFileManager.m in Sources */,
 				80495E7D1B47A06400F72858 /* main.m in Sources */,
-				7817ED5F1E17D8A60003D974 /* CJFileManager.m in Sources */,
+				7809736B1E1B6E160017F1B9 /* CJFileManager.m in Sources */,
+				7809736C1E1B6E160017F1B9 /* CJFMDBFileManager.m in Sources */,
 				80495ECF1B47A8EE00F72858 /* DBViewController.m in Sources */,
 				780973561E1B69BA0017F1B9 /* SecondFMDBFileManager.m in Sources */,
 			);

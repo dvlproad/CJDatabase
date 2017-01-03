@@ -96,6 +96,4 @@ static NSString *kCurrentTableName = @"ACCOUNT";
     return image;
 }
 
-
-
 @end

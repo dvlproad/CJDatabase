@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name         = "CommonFMDBUtil"
-  s.version      = "0.0.4"
+  s.name         = "CJFMDBFileManager"
+  s.version      = "0.0.5"
   s.summary      = "easier to use FMDB."
   s.homepage     = "https://github.com/dvlproad/CommonFMDBUtil"
   s.license      = "MIT"
@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "CommonFMDBUtil_0.0.4" }
-  s.source_files  = "CommonFMDBUtil/**/*.{h,m}"
-  s.resources = "CommonFMDBUtil/demofmdb.db"
+  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "CJFMDBFileManager_0.0.5" }
+  s.source_files  = "CJFMDBFileManager/**/*.{h,m}"
+  s.resources = "CJFMDBFileManager/demofmdb.db"
   s.frameworks = 'UIKit'
 
   # s.library   = "iconv"
@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-  s.dependency 'FMDB', '~> 2.5'
+  s.dependency 'FMDB', '~> 2.6.2'
 
 end
