@@ -35,8 +35,12 @@
     //CJFMDBFileDeleteResult *deleteResult = [[FirstFMDBFileManager sharedInstance] deleteCurrentFMDBFile];
     
     [[FirstFMDBFileManager sharedInstance] cancelManagerAnyDatabase];
-    [[FirstFMDBFileManager sharedInstance] copyBundleDatabase:@"demofmdb.db" toSubDirectoryPath:nil ifExistDeleteFirst:YES];
-    [[SecondFMDBFileManager sharedInstance] copyBundleDatabase:@"demosqlite.db" toSubDirectoryPath:@"DB/Sqlite" ifExistDeleteFirst:YES];
+    [[FirstFMDBFileManager sharedInstance] copyBundleDatabase:@"demofmdb.db"
+                                           toSubDirectoryPath:nil
+                                              ifExistDoAction:CJFMDBFileExistActionTypeUseOld];
+    [[SecondFMDBFileManager sharedInstance] copyBundleDatabase:@"demosqlite.db"
+                                            toSubDirectoryPath:@"DB/Sqlite"
+                                               ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
 #else
     [CommonSqliteUtil setDataBaseName:@"demosqlite.db"];
 #endif

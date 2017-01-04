@@ -32,39 +32,34 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
 #pragma mark - 创建数据库、数据表
 /** 完整的描述请参见文件头部 */
 - (BOOL)copyBundleDatabase:(NSString *)databaseName
-        toSubDirectoryPath:(NSString *)subDirectoryPath {
-    return [self copyBundleDatabase:databaseName
-                 toSubDirectoryPath:subDirectoryPath
-                 ifExistDeleteFirst:NO];
-}
-
-/** 完整的描述请参见文件头部 */
-- (BOOL)copyBundleDatabase:(NSString *)databaseName
         toSubDirectoryPath:(NSString *)subDirectoryPath
-        ifExistDeleteFirst:(BOOL)ifExistDeleteFirst {
-    
-    NSString *databasePath = [self setDatabaseName:databaseName subDirectoryPath:subDirectoryPath ifExistDeleteFirst:ifExistDeleteFirst];
-    
-    //复制文件到我们指定的目录
-    BOOL copySuccess = NO;
-    if([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
-        NSAssert(NO, @"复制mainBundle中的数据库到指定目录失败，因为该目录已存在同名文件%@ !", databasePath);
-        
-    } else {
-        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:nil];//注意如果bundlePath == nil,那请检查Build Phases下的Copy Bundle Resources中是不是没有添加该资源
-        if (![[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
-            NSAssert(NO, @"复制数据库文件到指定目录失败，因为要复制的数据库文件不存在：%@!", databaseName);
+           ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction
+{
+    NSString *databasePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:nil];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
+        if (FMDBFileExistAction == CJFMDBFileExistActionTypeShowError) {
+            NSAssert(NO, @"复制mainBundle中的数据库到指定目录失败，因为该目录已存在同名文件%@ !", databasePath);
+            return NO;
             
-        } else {
-            NSError *error = nil;
-            copySuccess = [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:databasePath error:&error];
-            if (copySuccess) {
-                NSLog(@"复制数据库文件到指定目录%@成功", databasePath);
-            } else {
-                NSLog(@"复制数据库文件到指定目录%@失败，因为%@", databasePath, [error localizedDescription]);
-            }
+        } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeUseOld) {
+            NSLog(@"复制数据库到指定目录失败，因为该目录已存在同名文件%@ !，故不重复创建，继续使用之前的", databasePath);
+            return NO;
+            
+        } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeRerecertIt) {
+            [self deleteCurrentFMDBFile];
         }
     }
+    
+    
+    //复制文件到我们指定的目录
+    NSError *error = nil;
+    BOOL copySuccess = [[NSFileManager defaultManager] copyItemAtPath:databasePath toPath:databasePath error:&error];
+    if (copySuccess) {
+        NSLog(@"复制数据库文件到指定目录%@成功", databasePath);
+    } else {
+        NSLog(@"复制数据库文件到指定目录%@失败，因为%@", databasePath, [error localizedDescription]);
+    }
+    
     return copySuccess;
 }
 
@@ -75,47 +70,48 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
     NSString *subDirectoryPath = deleteResult.deleteFileInDirectoryName;
     NSString *fileName = deleteResult.deleteFileName;
     
-    [self copyBundleDatabase:fileName toSubDirectoryPath:subDirectoryPath ifExistDeleteFirst:YES];
-}
-
-
-/** 完整的描述请参见文件头部 */
-- (void)createDatabaseWithName:(NSString *)databaseName
-              subDirectoryPath:(NSString *)subDirectoryPath
-               createTableSqls:(NSArray<NSString *> *)createTableSqls {
-    [self createDatabaseWithName:databaseName
-                subDirectoryPath:subDirectoryPath
-                 createTableSqls:createTableSqls
-              ifExistDeleteFirst:NO];
+    [self copyBundleDatabase:fileName toSubDirectoryPath:subDirectoryPath ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
 }
 
 /** 完整的描述请参见文件头部 */
-- (void)createDatabaseWithName:(NSString *)databaseName
+- (BOOL)createDatabaseWithName:(NSString *)databaseName
               subDirectoryPath:(NSString *)subDirectoryPath
                createTableSqls:(NSArray<NSString *> *)createTableSqls
-            ifExistDeleteFirst:(BOOL)ifExistDeleteFirst {
-    
-    NSString *databasePath = [self setDatabaseName:databaseName subDirectoryPath:subDirectoryPath ifExistDeleteFirst:ifExistDeleteFirst];
-    
+               ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction
+{
+    NSString *databasePath = [self setDatabaseName:databaseName subDirectoryPath:subDirectoryPath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
-        NSAssert(NO, @"创建数据库到指定目录失败，因为该目录已存在同名文件%@ !", databasePath);
+        if (FMDBFileExistAction == CJFMDBFileExistActionTypeShowError) {
+            NSAssert(NO, @"创建数据库到指定目录失败，因为该目录已存在同名文件%@ !", databasePath);
+            return NO;
+            
+        } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeUseOld) {
+            NSLog(@"创建数据库到指定目录失败，因为该目录已存在同名文件%@ !，故不重复创建，继续使用之前的", databasePath);
+            return NO;
+            
+        } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeRerecertIt) {
+            [self deleteCurrentFMDBFile];
+        }
+    }
+    
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
+    if (![db open]) { //执行open的时候，如果数据库不存在则会自动创建
+        NSAssert(NO, @"创建数据库文件失败!", databaseName);
+        return NO;
         
     } else {
-        FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
-        if (![db open]) { //执行open的时候，如果数据库不存在则会自动创建
-            NSAssert(NO, @"创建数据库文件失败!", databaseName);
-            
-        } else {
-            NSLog(@"创建数据库到指定目录%@成功", databasePath);
-            for (NSString *createTableSql in createTableSqls) {
-                BOOL result = [db executeUpdate:createTableSql];
-                if (result == NO) {
-                    NSLog(@"操作数据表失败:%@", createTableSql);
-                }
+        NSLog(@"创建数据库到指定目录%@成功", databasePath);
+        for (NSString *createTableSql in createTableSqls) {
+            BOOL result = [db executeUpdate:createTableSql];
+            if (result == NO) {
+                NSLog(@"操作数据表失败:%@", createTableSql);
             }
-            
-            [db close];
         }
+        
+        [db close];
+        
+        return YES;
     }
 }
 
@@ -128,7 +124,8 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
     
     [self createDatabaseWithName:fileName
                 subDirectoryPath:subDirectoryPath
-                 createTableSqls:createTableSqls ifExistDeleteFirst:YES];
+                 createTableSqls:createTableSqls
+                 ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
 }
 
 #pragma mark - 删除数据库目录/数据库文件
@@ -288,7 +285,7 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
     return success;
 }
 
-- (NSString *)setDatabaseName:(NSString *)databaseName subDirectoryPath:(NSString *)subDirectoryPath ifExistDeleteFirst:(BOOL)ifExistDeleteFirst {
+- (NSString *)setDatabaseName:(NSString *)databaseName subDirectoryPath:(NSString *)subDirectoryPath {
     NSAssert(databaseName, @"databaseName cannot be nil!");
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -300,11 +297,6 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
         NSAssert(NO, @"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@。或者您可以在创建/复制数据库前，通过cancelManagerAnyDatabase方法来取消%@对之前的数据库%@的管理，以此来让它管理现在的数据库%@", NSStringFromClass([self class]), managerDBName, databaseName, NSStringFromClass([self class]), managerDBName, databaseName);
     }
     [userDefaults setObject:databaseName forKey:managerDBNameKey];
-    
-    if (ifExistDeleteFirst) {
-        [self deleteCurrentFMDBFile];
-    }
-    
     
     NSString *subDirectoryPathKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileDirectory];
     NSString *databaseNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
