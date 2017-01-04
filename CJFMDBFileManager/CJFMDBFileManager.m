@@ -21,6 +21,14 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
 
 @implementation CJFMDBFileManager
 
+/** 完整的描述请参见文件头部 */
+- (void)cancelManagerAnyDatabase {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+    NSString *managerDBNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileManagerDBName];
+    [userDefaults removeObjectForKey:managerDBNameKey];
+}
+
 #pragma mark - 创建数据库、数据表
 /** 完整的描述请参见文件头部 */
 - (BOOL)copyBundleDatabase:(NSString *)databaseName
@@ -59,6 +67,17 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
     }
     return copySuccess;
 }
+
+/** 完整的描述请参见文件头部 */
+- (void)recopyDatabase {
+    CJFMDBFileDeleteResult *deleteResult = [self deleteCurrentFMDBFile];
+    
+    NSString *subDirectoryPath = deleteResult.deleteFileInDirectoryName;
+    NSString *fileName = deleteResult.deleteFileName;
+    
+    [self copyBundleDatabase:fileName toSubDirectoryPath:subDirectoryPath ifExistDeleteFirst:YES];
+}
+
 
 /** 完整的描述请参见文件头部 */
 - (void)createDatabaseWithName:(NSString *)databaseName
@@ -100,9 +119,23 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
     }
 }
 
+/** 完整的描述请参见文件头部 */
+- (void)recreateDatabase:(NSArray<NSString *> *)createTableSqls {
+    CJFMDBFileDeleteResult *deleteResult = [self deleteCurrentFMDBFile];
+    
+    NSString *subDirectoryPath = deleteResult.deleteFileInDirectoryName;
+    NSString *fileName = deleteResult.deleteFileName;
+    
+    [self createDatabaseWithName:fileName
+                subDirectoryPath:subDirectoryPath
+                 createTableSqls:createTableSqls ifExistDeleteFirst:YES];
+}
+
 #pragma mark - 删除数据库目录/数据库文件
 /** 完整的描述请参见文件头部 */
-- (BOOL)deleteCurrentFMDBFile {
+- (CJFMDBFileDeleteResult *)deleteCurrentFMDBFile {
+    CJFMDBFileDeleteResult *deleteResult = [[CJFMDBFileDeleteResult alloc] init];
+    
     NSString *subDirectoryPath = self.databaseDirectory; //不使用此方法的原因：重启后内存释放会导致获取不到
     NSString *fileName = self.databaseName;
     if ([fileName length] == 0) {
@@ -116,32 +149,46 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
         fileName = [userDefaults objectForKey:fileNameKey];
     }
     
+    deleteResult.deleteFileName = fileName;
+    deleteResult.deleteFileInDirectoryName = subDirectoryPath;
+    
+    BOOL deleteFileSuccess = NO;
     if ([fileName length] == 0) {
         NSLog(@"删除数据库文件时候，还是获取不到文件名，默认删除成功(有可能是重复删除)");
-        return YES;
-    }
-    
-    //    NSString *filePath = [CJFileManager getFilePathWithFileName:fileName
-    //                                               subDirectoryPath:subDirectoryPath
-    //                                          inSearchPathDirectory:NSDocumentDirectory];
-    NSString *filePath = [self getDatabasePathWithName:fileName
-                                      subDirectoryPath:subDirectoryPath];
-    if ([filePath length] == 0) {
-        NSLog(@"删除数据库文件时候，%@文件不存在，默认删除成功", fileName);
-    }
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL deleteFileSuccess = [fileManager removeItemAtPath:filePath error:nil];
-    if (deleteFileSuccess) {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
-        NSString *fileNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+        deleteFileSuccess = YES;
         
-        [userDefaults removeObjectForKey:fileNameKey];
-        _databaseName = nil;
+    } else {
+        //    NSString *filePath = [CJFileManager getFilePathWithFileName:fileName
+        //                                               subDirectoryPath:subDirectoryPath
+        //                                          inSearchPathDirectory:NSDocumentDirectory];
+        NSString *filePath = [self getDatabasePathWithName:fileName
+                                          subDirectoryPath:subDirectoryPath];
+        if ([filePath length] == 0) {
+            NSLog(@"删除数据库文件时候，%@文件不存在，默认删除成功", fileName);
+            deleteFileSuccess = YES;
+            
+        } else {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            deleteFileSuccess = [fileManager removeItemAtPath:filePath error:nil];
+            if (deleteFileSuccess) {
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                NSString *currentFMDBFileManagerName = NSStringFromClass([self class]);
+                NSString *fileNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileName];
+                
+                [userDefaults removeObjectForKey:fileNameKey];
+                _databaseName = nil;
+            }
+            NSLog(@"删除数据库文件%@%@", filePath, deleteFileSuccess ? @"成功" : @"失败");
+        }
+        
+        
     }
-    NSLog(@"删除数据库文件%@%@", filePath, deleteFileSuccess ? @"成功" : @"失败");
-    return deleteFileSuccess;
+    deleteResult.success = deleteFileSuccess;
+    
+    NSLog(@"总结：删除%@中的%@数据库文件%@", deleteResult.deleteFileInDirectoryName, deleteResult.deleteFileName, deleteResult.success ? @"成功":@"失败");
+    
+    
+    return deleteResult;
 }
 
 /** 完整的描述请参见文件头部 */
@@ -249,8 +296,8 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
     NSString *managerDBNameKey = [NSString stringWithFormat:@"%@_%@", currentFMDBFileManagerName, CJFMDBFileManagerDBName];
     NSString *managerDBName = [userDefaults objectForKey:managerDBNameKey];
     if ([managerDBName length] > 0 && ![managerDBName isEqualToString:databaseName]) {
-        NSLog(@"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@", NSStringFromClass([self class]), managerDBName, databaseName);
-        NSAssert(NO, @"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@", NSStringFromClass([self class]), managerDBName, databaseName);
+        NSLog(@"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@。或者您可以在创建/复制数据库前，通过cancelManagerAnyDatabase方法来取消%@对之前的数据库%@的管理，以此来让它管理现在的数据库%@", NSStringFromClass([self class]), managerDBName, databaseName, NSStringFromClass([self class]), managerDBName, databaseName);
+        NSAssert(NO, @"%@数据库控制器已用来管理数据库%@,请重新选择其他控制器来管理%@。或者您可以在创建/复制数据库前，通过cancelManagerAnyDatabase方法来取消%@对之前的数据库%@的管理，以此来让它管理现在的数据库%@", NSStringFromClass([self class]), managerDBName, databaseName, NSStringFromClass([self class]), managerDBName, databaseName);
     }
     [userDefaults setObject:databaseName forKey:managerDBNameKey];
     

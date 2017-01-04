@@ -7,6 +7,7 @@
 //
 
 #import "CJFileManager.h"
+#import "CJFMDBFileDeleteResult.h"
 
 /**
  *  数据库文件管理类（每个数据库的管理类都必须继承此类，并实现单例方法）
@@ -16,6 +17,11 @@
 }
 @property (nonatomic, copy, readonly) NSString *databaseDirectory;
 @property (nonatomic, copy, readonly) NSString *databaseName;
+
+/**
+ *  取消对任何数据库的管理（账号切换的时候使用,即重新登录的时候）
+ */
+- (void)cancelManagerAnyDatabase;
 
 #pragma mark - 创建数据库、数据表
 /**
@@ -37,6 +43,13 @@
 - (BOOL)copyBundleDatabase:(NSString *)databaseName
         toSubDirectoryPath:(NSString *)subDirectoryPath
         ifExistDeleteFirst:(BOOL)ifExistDeleteFirst;
+
+/**
+ *  重新复制新数据库（新数据库的数据库名和位置和原来的一样）
+ *
+ */
+- (void)recopyDatabase;
+
 
 /**
  *  创建数据库(如果已存在则会报错)
@@ -62,13 +75,20 @@
                createTableSqls:(NSArray<NSString *> *)createTableSqls
             ifExistDeleteFirst:(BOOL)ifExistDeleteFirst;
 
+/**
+ *  重新创建新数据库（新数据库的数据库名和位置和原来的一样）
+ *
+ *  @param createTableSqls      新数据库数据表的创建语句
+ */
+- (void)recreateDatabase:(NSArray<NSString *> *)createTableSqls;
+
 #pragma mark - 删除数据库目录/数据库文件
 /**
  *  删除当前数据库文件（清除缓存的时候使用）
  *
- *  return 是否删除成功
+ *  return 删除后的结果状态
  */
-- (BOOL)deleteCurrentFMDBFile;
+- (CJFMDBFileDeleteResult *)deleteCurrentFMDBFile;
 
 /**
  *  删除数据库所在的文件夹（应用更新的时候使用）

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CJFMDBFileManager"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "easier to use FMDB."
   s.homepage     = "https://github.com/dvlproad/CommonFMDBUtil"
   s.license      = "MIT"
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "CJFMDBFileManager_0.0.5" }
+  s.source       = { :git => "https://github.com/dvlproad/CommonFMDBUtil.git", :tag => "CJFMDBFileManager_0.0.6" }
   s.source_files  = "CJFMDBFileManager/**/*.{h,m}"
   s.resources = "CJFMDBFileManager/demofmdb.db"
   s.frameworks = 'UIKit'
