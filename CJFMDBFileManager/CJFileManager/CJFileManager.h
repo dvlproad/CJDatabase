@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, CJFileSizeUnitType) {
+    CJFileSizeUnitTypeBestUnit,
+    CJFileSizeUnitTypeB,
+    CJFileSizeUnitTypeKB,
+    CJFileSizeUnitTypeMB,
+    CJFileSizeUnitTypeGB
+};
+
 @interface CJFileManager : NSObject
 
 #pragma mark - 文件操作
