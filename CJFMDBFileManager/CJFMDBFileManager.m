@@ -345,7 +345,10 @@ static NSString *CJFMDBFileName = @"CJFMDBFileName";
 
 - (NSString *)getDatabasePathWithName:(NSString *)databaseName
                      subDirectoryPath:(NSString *)subDirectoryPath {
-    NSString *databaseDirectory = [CJFileManager getDirectoryPathBySubDirectoryPath:subDirectoryPath inSearchPathDirectory:NSDocumentDirectory createIfNoExist:YES];
+    NSString *databaseDirectory = [CJFileManager getLocalDirectoryPathType:CJFileLocalPathTypeAbsolute
+                                                        bySubDirectoryPath:subDirectoryPath
+                                                     inSearchPathDirectory:NSDocumentDirectory
+                                                           createIfNoExist:YES];
     NSString *databasePath = [databaseDirectory stringByAppendingPathComponent:databaseName];
     //NSLog(@"数据库路径 = %@", databasePath);
     
