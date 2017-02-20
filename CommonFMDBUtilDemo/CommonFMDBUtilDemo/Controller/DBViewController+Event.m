@@ -40,7 +40,7 @@
     info.execTypeL = @"none";
     
 #ifdef USE_CommonFMDBUtil
-    BOOL res = [AccountFMDBUtil insertInfo:info];
+    BOOL res = [FirstFMDBFileManager insertAccountInfo:info];
 #else
     BOOL res = [AccountSqliteUtil insertInfo:info];
 #endif
@@ -53,7 +53,7 @@
 
 - (IBAction)delete:(id)sender{
 #ifdef USE_CommonFMDBUtil
-    BOOL res = [AccountFMDBUtil removeInfoWhereName:self.tfName_delete.text];
+    BOOL res = [FirstFMDBFileManager removeAccountInfoWhereName:self.tfName_delete.text];
 #else
     BOOL res = [AccountSqliteUtil removeInfoWhereName:self.tfName_delete.text];
 #endif
@@ -67,7 +67,7 @@
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
     
 #ifdef USE_CommonFMDBUtil
-    NSDictionary *dic = [AccountFMDBUtil selectInfoWhereUID:uid];
+    NSDictionary *dic = [FirstFMDBFileManager selectAccountInfoWhereUID:uid];
     
     AccountInfo *info = [[AccountInfo alloc]init];
     
@@ -98,7 +98,7 @@
         return;
     }
 #ifdef USE_CommonFMDBUtil
-    UIImage *image = [AccountFMDBUtil selectImageWhereName:self.tfName_update.text];
+    UIImage *image = [FirstFMDBFileManager selectAccountImageWhereName:self.tfName_update.text];
 #else
     UIImage *image = [AccountSqliteUtil selectImageWhereName:self.tfName_update.text];
 #endif
@@ -110,7 +110,7 @@
     uinfo.email = self.tfEmail_update.text;
     
 #ifdef USE_CommonFMDBUtil
-    BOOL res = [AccountFMDBUtil updateInfoExceptUID:uinfo whereUID:uinfo.uid];
+    BOOL res = [FirstFMDBFileManager updateAccountInfoExceptUID:uinfo whereUID:uinfo.uid];
 #else
     BOOL res = [AccountSqliteUtil updateInfoExceptUID:uinfo whereUID:uinfo.uid];
 #endif

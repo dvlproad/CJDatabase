@@ -19,4 +19,106 @@
     return _sharedInstance;
 }
 
++ (void)createDatabaseForUserName:(NSString *)userName {
+    NSAssert(userName != nil && [userName length] > 0, @"userName不能为空");
+    
+    [[FirstFMDBFileManager sharedInstance] cancelManagerAnyDatabase];
+    
+    NSString *databaseName = @"";
+    if ([userName hasSuffix:@".db"]) {
+        databaseName = userName;
+    } else {
+        databaseName = [NSString stringWithFormat:@"%@.db", userName];
+    }
+    
+    //方法1：copy
+    [[FirstFMDBFileManager sharedInstance] createDatabaseWithName:databaseName
+                                               toSubDirectoryPath:nil
+                                             byCopyBundleDatabase:@"demofmdb.db"
+                                                  ifExistDoAction:CJFMDBFileExistActionTypeUseOld];
+    
+    //方法2:create
+    /*
+    NSArray *createTableSqls = [self allCreateTableSqls];
+    
+    [[FirstFMDBFileManager sharedInstance] createDatabaseWithName:databaseName
+                                                   subDirectoryPath:@"DB/Account"
+                                                    createTableSqls:createTableSqls
+                                                    ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+    */
+}
+
++ (NSArray *)allCreateTableSqls {
+    NSString *sqlUserTabelCreate = [AccountTableSQL sqlForCreateTable];
+    
+    NSArray *createTableSqls = @[sqlUserTabelCreate];
+    
+    return createTableSqls;
+}
+
++ (void)reCreateCurrentDatabase {
+    NSArray *createTableSqls = [self allCreateTableSqls];
+    [[FirstFMDBFileManager sharedInstance] recreateDatabase:createTableSqls];
+}
+
++ (BOOL)deleteFMDBDirectory {
+    return [[FirstFMDBFileManager sharedInstance] deleteCurrentFMDBDirectory];
+}
+
+
+#pragma mark - AccountTable
++ (BOOL)insertAccountInfo:(AccountInfo *)info {
+    NSString *sql = [AccountTableSQL sqlForInsertInfo:info];
+    return [[FirstFMDBFileManager sharedInstance] insert:sql];
+}
+
++ (BOOL)removeAccountInfoWhereName:(NSString *)name {
+    NSString *sql = [AccountTableSQL sqlForRemoveInfoWhereName:name];
+    return [[FirstFMDBFileManager sharedInstance] remove:sql];
+}
+
+//update
++ (BOOL)updateAccountInfoExceptUID:(AccountInfo *)info whereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForUpdateInfoExceptUID:info whereUID:uid];
+    return [[FirstFMDBFileManager sharedInstance] update:sql];
+}
+
++ (BOOL)updateAccountInfoImagePath:(NSString *)imagePath whereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForUpdateInfoImageUrl:imagePath whereUID:uid];
+    return [[FirstFMDBFileManager sharedInstance] update:sql];
+}
+
++ (BOOL)updateAccountInfoImageUrl:(NSString *)imageUrl whereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForUpdateInfoImageUrl:imageUrl whereUID:uid];
+    return [[FirstFMDBFileManager sharedInstance] update:sql];
+}
+
++ (BOOL)updateAccountInfoExecTypeL:(NSString *)execTypeL whereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForUpdateInfoExecTypeL:execTypeL whereUID:uid];
+    return [[FirstFMDBFileManager sharedInstance] update:sql];
+}
+
+//query
++ (NSDictionary *)selectAccountInfoWhereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForSelectInfoWhereUID:uid];
+    
+    NSArray *result = [[FirstFMDBFileManager sharedInstance] query:sql];
+    return result.count > 0 ? result[0] : nil;
+}
+
++ (UIImage *)selectAccountImageWhereName:(NSString *)name
+{
+    NSString *sql = [AccountTableSQL sqlForSelectImageWhereName:name];
+    
+    NSArray *result = [[FirstFMDBFileManager sharedInstance] query:sql];
+    NSString *imagePath = result.count > 0 ?
+    [result[0] objectForKey:@"imagePath"] : [[NSBundle mainBundle] pathForResource:@"people_logout" ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    
+    return image;
+}
+
+
+
+
 @end

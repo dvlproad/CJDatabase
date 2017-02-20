@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #ifdef USE_CommonFMDBUtil
-    #import "AccountFMDBUtil.h"
+    #import "FirstFMDBFileManager.h"
 #else
     #import "AccountSqliteUtil.h"
 #endif

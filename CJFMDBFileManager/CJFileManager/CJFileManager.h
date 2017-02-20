@@ -16,9 +16,9 @@ typedef NS_ENUM(NSUInteger, CJFileSizeUnitType) {
     CJFileSizeUnitTypeGB
 };
 
-typedef NS_ENUM(NSUInteger, CJFileLocalPathType) {
-    CJFileLocalPathTypeAbsolute,    /**< 绝对路径 */
-    CJFileLocalPathTypeRelative,   /**< 相对于Home的路径 */
+typedef NS_ENUM(NSUInteger, CJLocalPathType) {
+    CJLocalPathTypeAbsolute,    /**< 绝对路径 */
+    CJLocalPathTypeRelative,    /**< 相对于Home的路径 */
 };
 
 @interface CJFileManager : NSObject
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, CJFileLocalPathType) {
  *
  *  return 文件夹的路径(绝对路径或者相对于home的路径)
  */
-+ (NSString *)getLocalDirectoryPathType:(CJFileLocalPathType)localPathType
++ (NSString *)getLocalDirectoryPathType:(CJLocalPathType)localPathType
                      bySubDirectoryPath:(NSString *)subDirectoryPath
                   inSearchPathDirectory:(NSSearchPathDirectory)searchPathDirectory
                         createIfNoExist:(BOOL)createIfNoExist;

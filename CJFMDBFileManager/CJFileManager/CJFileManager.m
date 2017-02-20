@@ -15,7 +15,7 @@
 + (BOOL)deleteDirectoryBySubDirectoryPath:(NSString *)subDirectoryPath
                     inSearchPathDirectory:(NSSearchPathDirectory)searchPathDirectory
 {
-    NSString *absoluteDirectory = [CJFileManager getLocalDirectoryPathType:CJFileLocalPathTypeAbsolute
+    NSString *absoluteDirectory = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeAbsolute
                                                         bySubDirectoryPath:subDirectoryPath
                                                      inSearchPathDirectory:searchPathDirectory
                                                            createIfNoExist:NO];
@@ -30,7 +30,7 @@
 }
 
 /** 完整的描述请参见文件头部 */
-+ (NSString *)getLocalDirectoryPathType:(CJFileLocalPathType)localPathType
++ (NSString *)getLocalDirectoryPathType:(CJLocalPathType)localPathType
                      bySubDirectoryPath:(NSString *)subDirectoryPath
                   inSearchPathDirectory:(NSSearchPathDirectory)searchPathDirectory
                         createIfNoExist:(BOOL)createIfNoExist
@@ -64,7 +64,7 @@
     }
     
     
-    if (localPathType == CJFileLocalPathTypeAbsolute) {
+    if (localPathType == CJLocalPathTypeAbsolute) {
         return absoluteDirectory;
         
     } else {
@@ -107,7 +107,7 @@
 {
     NSAssert(fileName, @"fileName cannot be nil!");
     
-    NSString *absoluteDirectory = [CJFileManager getLocalDirectoryPathType:CJFileLocalPathTypeAbsolute
+    NSString *absoluteDirectory = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeAbsolute
                                                         bySubDirectoryPath:subDirectoryPath
                                                      inSearchPathDirectory:searchPathDirectory
                                                            createIfNoExist:NO];
@@ -129,21 +129,19 @@
        searchPathDirectory:(NSSearchPathDirectory)searchPathDirectory
 {
     //文件所在目录
-    NSString *absoluteDirectory =
-            [CJFileManager getLocalDirectoryPathType:CJFileLocalPathTypeAbsolute
-                                  bySubDirectoryPath:subDirectoryPath
-                               inSearchPathDirectory:searchPathDirectory
-                                     createIfNoExist:YES];
+    NSString *absoluteDirectory = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeAbsolute
+                                                        bySubDirectoryPath:subDirectoryPath
+                                                     inSearchPathDirectory:searchPathDirectory
+                                                           createIfNoExist:YES];
 
     //由文件所在目录和文件名组成的文件路径
     NSString *absoluteFilePath = [absoluteDirectory stringByAppendingPathComponent:fileName];
     BOOL success = [data writeToFile:absoluteFilePath atomically:YES];
     if (success) {
-        NSString *relativeDirectory =
-            [CJFileManager getLocalDirectoryPathType:CJFileLocalPathTypeRelative
-                                  bySubDirectoryPath:subDirectoryPath
-                               inSearchPathDirectory:searchPathDirectory
-                                     createIfNoExist:YES];
+        NSString *relativeDirectory = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeRelative
+                                                            bySubDirectoryPath:subDirectoryPath
+                                                         inSearchPathDirectory:searchPathDirectory
+                                                               createIfNoExist:YES];
         NSString *relativeFilePath = [relativeDirectory stringByAppendingPathComponent:fileName];
         return relativeFilePath;
     }
