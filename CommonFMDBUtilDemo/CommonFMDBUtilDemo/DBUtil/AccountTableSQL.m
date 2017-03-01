@@ -12,18 +12,13 @@ static NSString *kCurrentTableName = @"ACCOUNT";
 
 @implementation AccountTableSQL
 
-/*
-+ (BOOL)createTable
+#pragma mark - Create
++ (NSString *)sqlForCreateTable
 {
     NSString *sql = @"create table if not exists ACCOUNT (uid Text PRIMARY KEY, name TEXT, email TEXT, pasd TEXT, imageName Text, imageUrl Text, imagePath Text, modified TEXT, execTypeL Text);";
     
-    return [CommonFMDBUtil create:sql];
+    return sql;
 }
-*/
-
-//+ (NSString *)sqlForCreateTable {
-//    return nil;
-//}
 
 #pragma mark - insert
 

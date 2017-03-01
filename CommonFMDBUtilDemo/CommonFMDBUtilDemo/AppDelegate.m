@@ -34,11 +34,8 @@
     
 #ifdef USE_CommonFMDBUtil
     //CJFMDBFileDeleteResult *deleteResult = [[FirstFMDBFileManager sharedInstance] deleteCurrentFMDBFile];
-    [FirstFMDBFileManager createDatabaseForUserName:@"accountDB"];
-    [[SecondFMDBFileManager sharedInstance] createDatabaseWithName:@"demosqlite.db"
-                                                toSubDirectoryPath:@"DB/Sqlite"
-                                              byCopyBundleDatabase:@"demosqlite.db"
-                                                   ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+    [FirstFMDBFileManager createDatabaseForUserName:@"demofmdb.db"];
+    [SecondFMDBFileManager createDatabaseForUserName:@"demosqlite.db"];
 #else
     [CommonSqliteUtil setDataBaseName:@"demosqlite.db"];
 #endif

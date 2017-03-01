@@ -31,20 +31,25 @@
         databaseName = [NSString stringWithFormat:@"%@.db", userName];
     }
     
+    NSString *directoryRelativePath = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeRelative
+                                                            bySubDirectoryPath:@"DB/Account"
+                                                         inSearchPathDirectory:NSDocumentDirectory
+                                                               createIfNoExist:YES];
+    NSString *fileRelativePath = [directoryRelativePath stringByAppendingPathComponent:databaseName];
+    
     //方法1：copy
-    [[FirstFMDBFileManager sharedInstance] createDatabaseWithName:databaseName
-                                               toSubDirectoryPath:nil
-                                             byCopyBundleDatabase:@"demofmdb.db"
-                                                  ifExistDoAction:CJFMDBFileExistActionTypeUseOld];
+    NSString *copyDatabasePath = [[NSBundle mainBundle] pathForResource:@"demofmdb.db" ofType:nil];
+    [[FirstFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
+                                                         byCopyDatabasePath:copyDatabasePath
+                                                            ifExistDoAction:CJFMDBFileExistActionTypeUseOld];
     
     //方法2:create
     /*
     NSArray *createTableSqls = [self allCreateTableSqls];
     
-    [[FirstFMDBFileManager sharedInstance] createDatabaseWithName:databaseName
-                                                   subDirectoryPath:@"DB/Account"
-                                                    createTableSqls:createTableSqls
-                                                    ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+    [[FirstFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
+                                                          byCreateTableSqls:createTableSqls
+                                                            ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
     */
 }
 

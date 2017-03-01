@@ -12,4 +12,6 @@
 
 + (SecondFMDBFileManager *)sharedInstance;
 
++ (void)createDatabaseForUserName:(NSString *)userName;
+
 @end

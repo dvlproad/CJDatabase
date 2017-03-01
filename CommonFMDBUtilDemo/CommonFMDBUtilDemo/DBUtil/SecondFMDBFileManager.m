@@ -19,4 +19,29 @@
     return _sharedInstance;
 }
 
++ (void)createDatabaseForUserName:(NSString *)userName {
+    NSAssert(userName != nil && [userName length] > 0, @"userName不能为空");
+    
+    [[SecondFMDBFileManager sharedInstance] cancelManagerAnyDatabase];
+    
+    NSString *databaseName = @"";
+    if ([userName hasSuffix:@".db"]) {
+        databaseName = userName;
+    } else {
+        databaseName = [NSString stringWithFormat:@"%@.db", userName];
+    }
+    
+    NSString *directoryRelativePath = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeRelative
+                                                            bySubDirectoryPath:@"DB/Sqlite"
+                                                         inSearchPathDirectory:NSDocumentDirectory
+                                                               createIfNoExist:YES];
+    NSString *fileRelativePath = [directoryRelativePath stringByAppendingPathComponent:databaseName];
+    
+    //方法1：copy
+    NSString *copyDatabasePath = [[NSBundle mainBundle] pathForResource:@"demosqlite.db" ofType:nil];
+    [[SecondFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
+                                                          byCopyDatabasePath:copyDatabasePath
+                                                             ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+}
+
 @end
