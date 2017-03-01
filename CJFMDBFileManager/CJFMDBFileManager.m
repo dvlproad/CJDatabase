@@ -257,8 +257,6 @@
     [userDefaults setObject:fileRelativePath forKey:fileRelativePathKey];
     [userDefaults synchronize];
     
-    _fileRelativePath = fileRelativePath;
-    
     NSString *home = NSHomeDirectory();
     NSString *fileAbsolutePath = [home stringByAppendingPathComponent:fileRelativePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:fileAbsolutePath]) {
@@ -271,9 +269,11 @@
             return NO;
             
         } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeRerecertIt) {
-            [self deleteCurrentFMDBFile];
+            [self deleteCurrentFMDBFile]; //会将_fileRelativePath设为nil
         }
     }
+    
+    _fileRelativePath = fileRelativePath;
     
     return YES;
 }
