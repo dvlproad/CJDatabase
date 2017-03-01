@@ -23,7 +23,7 @@
 
 
 #pragma mark - AccountTable
-+ (BOOL)insertAccountInfo:(AccountInfo *)info;
++ (BOOL)insertAccountInfos:(NSArray<AccountInfo *> *)infos;
 + (BOOL)removeAccountInfoWhereName:(NSString *)name;
 
 //update

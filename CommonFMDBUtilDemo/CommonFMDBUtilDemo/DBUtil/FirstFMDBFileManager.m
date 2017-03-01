@@ -72,35 +72,40 @@
 
 
 #pragma mark - AccountTable
-+ (BOOL)insertAccountInfo:(AccountInfo *)info {
-    NSString *sql = [AccountTableSQL sqlForInsertInfo:info];
-    return [[FirstFMDBFileManager sharedInstance] insert:sql];
++ (BOOL)insertAccountInfos:(NSArray<AccountInfo *> *)infos {
+    NSMutableArray *sqls = [[NSMutableArray alloc] init];
+    for (AccountInfo *info in infos) {
+        NSString *sql = [AccountTableSQL sqlForInsertInfo:info];
+        [sqls addObject:sql];
+    }
+    
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:sqls useTransaction:YES];
 }
 
 + (BOOL)removeAccountInfoWhereName:(NSString *)name {
     NSString *sql = [AccountTableSQL sqlForRemoveInfoWhereName:name];
-    return [[FirstFMDBFileManager sharedInstance] remove:sql];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
 }
 
 //update
 + (BOOL)updateAccountInfoExceptUID:(AccountInfo *)info whereUID:(NSString *)uid {
     NSString *sql = [AccountTableSQL sqlForUpdateInfoExceptUID:info whereUID:uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
 }
 
 + (BOOL)updateAccountInfoImagePath:(NSString *)imagePath whereUID:(NSString *)uid {
     NSString *sql = [AccountTableSQL sqlForUpdateInfoImageUrl:imagePath whereUID:uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
 }
 
 + (BOOL)updateAccountInfoImageUrl:(NSString *)imageUrl whereUID:(NSString *)uid {
     NSString *sql = [AccountTableSQL sqlForUpdateInfoImageUrl:imageUrl whereUID:uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
 }
 
 + (BOOL)updateAccountInfoExecTypeL:(NSString *)execTypeL whereUID:(NSString *)uid {
     NSString *sql = [AccountTableSQL sqlForUpdateInfoExecTypeL:execTypeL whereUID:uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
 }
 
 //query

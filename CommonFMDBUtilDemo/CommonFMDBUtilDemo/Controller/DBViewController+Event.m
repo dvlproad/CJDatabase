@@ -40,7 +40,7 @@
     info.execTypeL = @"none";
     
 #ifdef USE_CommonFMDBUtil
-    BOOL res = [FirstFMDBFileManager insertAccountInfo:info];
+    BOOL res = [FirstFMDBFileManager insertAccountInfos:@[info]];
 #else
     BOOL res = [AccountSqliteUtil insertInfo:info];
 #endif
