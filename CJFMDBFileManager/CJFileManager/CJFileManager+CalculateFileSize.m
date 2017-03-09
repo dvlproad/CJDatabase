@@ -2,8 +2,8 @@
 //  CJFileManager+CalculateFileSize.m
 //  CommonFMDBUtilDemo
 //
-//  Created by 李超前 on 2017/1/5.
-//  Copyright © 2017年 ciyouzen. All rights reserved.
+//  Created by lichq on 6/25/15.
+//  Copyright (c) 2015 ciyouzen. All rights reserved.
 //
 
 #import "CJFileManager+CalculateFileSize.h"
@@ -11,38 +11,41 @@
 @implementation CJFileManager (CalculateFileSize)
 
 /** 完整的描述请参见文件头部 */
-+ (NSInteger)calculateFileSizeForFilePath:(NSString *)filePath {
++ (NSInteger)calculateFileSizeForFileAbsolutePath:(NSString *)fileAbsolutePath {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //判断字符串是否为文件/文件夹
-    BOOL isDirectory = NO;
-    BOOL isFilePathExists = [fileManager fileExistsAtPath:filePath isDirectory:&isDirectory];
-    if (isFilePathExists == NO) {
+    BOOL isFileDirectory = NO;
+    BOOL isFileExists = [fileManager fileExistsAtPath:fileAbsolutePath
+                                          isDirectory:&isFileDirectory];
+    if (isFileExists == NO) {
         NSLog(@"文件/文件夹不存在");
         return 0;
     }
     
     NSInteger totalByteSize = 0;
     //unsigned long long totalByteSize = 0;
-    if (isDirectory){   //filePath是文件夹路径，遍历文件夹中的所有内容，计算文件夹大小
-        NSArray *subpaths = [fileManager subpathsAtPath:filePath];
+    if (isFileDirectory == NO){   //fileAbsolutePath是文件路径
+        NSDictionary *attributes = [fileManager attributesOfItemAtPath:fileAbsolutePath error:nil];
+        totalByteSize += [attributes[NSFileSize] integerValue];
+        //totalByteSize += attributes.fileSize;
+        
+    } else {    //fileAbsolutePath是文件夹路径，遍历文件夹中的所有内容，计算文件夹大小
+        NSArray *subpaths = [fileManager subpathsAtPath:fileAbsolutePath];
         for (NSString *subpath in subpaths) {
-            NSString *fullSubPath = [filePath stringByAppendingPathComponent:subpath];
+            NSString *subFileAbsolutePath = [fileAbsolutePath stringByAppendingPathComponent:subpath];
             
-            BOOL isStillDirectory = NO;
-            [fileManager fileExistsAtPath:fullSubPath isDirectory:&isStillDirectory];
-            if (isStillDirectory){
-                totalByteSize += [self calculateFileSizeForFilePath:fullSubPath];
-            } else {
-                NSDictionary *attributes = [fileManager attributesOfItemAtPath:fullSubPath error:nil];
+            BOOL isSubFileDirectory = NO;
+            [fileManager fileExistsAtPath:subFileAbsolutePath isDirectory:&isSubFileDirectory];
+            if (isSubFileDirectory == NO){
+                NSDictionary *attributes = [fileManager attributesOfItemAtPath:subFileAbsolutePath error:nil];
                 totalByteSize += [attributes[NSFileSize] integerValue];
                 //totalByteSize += attributes.fileSize;
+                
+            } else {
+                totalByteSize += [self calculateFileSizeForFileAbsolutePath:subFileAbsolutePath];
             }
         }
         
-    } else {    //filePath是文件路径
-        NSDictionary *attributes = [fileManager attributesOfItemAtPath:filePath error:nil];
-        totalByteSize += [attributes[NSFileSize] integerValue];
-        //totalByteSize += attributes.fileSize;
     }
     
     return totalByteSize;

@@ -41,12 +41,12 @@
 #endif
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"demofmdb.db" ofType:nil];
-    NSInteger fileSize = [CJFileManager calculateFileSizeForFilePath:path];
+    NSInteger fileSize = [CJFileManager calculateFileSizeForFileAbsolutePath:path];
     NSLog(@"fileSize = %ld", fileSize);
     NSString *fileSizeString = [CJFileManager showFileSize:fileSize unitType:CJFileSizeUnitTypeBestUnit];
     NSLog(@"fileSizeString = %@", fileSizeString);
     
-    NSInteger fileSize2 = [CJFileManager calculateFileSizeForFilePath:documentsDirectory];
+    NSInteger fileSize2 = [CJFileManager calculateFileSizeForFileAbsolutePath:documentsDirectory];
     NSLog(@"fileSize2 = %ld", fileSize2);
     NSString *fileSizeString2 = [CJFileManager showFileSize:fileSize2 unitType:CJFileSizeUnitTypeMB];
     NSLog(@"fileSizeString2 = %@", fileSizeString2);
