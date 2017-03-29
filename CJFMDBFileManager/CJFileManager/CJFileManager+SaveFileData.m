@@ -11,9 +11,9 @@
 @implementation CJFileManager (SaveData)
 
 /** 完整的描述请参见文件头部 */
-+ (NSString *)saveFileData:(NSData *)data
-              withFileName:(NSString *)fileName
-   toRelativeDirectoryPath:(NSString *)relativeDirectoryPath
++ (BOOL)saveFileData:(NSData *)data
+        withFileName:(NSString *)fileName
+toRelativeDirectoryPath:(NSString *)relativeDirectoryPath
 {
     NSString *relativeFilePath = [relativeDirectoryPath stringByAppendingPathComponent:fileName];
     NSString *absoluteFilePath = [NSHomeDirectory() stringByAppendingPathComponent:relativeFilePath];
@@ -26,11 +26,7 @@
     }
     
     BOOL saveSuccess = [data writeToFile:absoluteFilePath atomically:YES];
-    if (!saveSuccess) {
-        return nil;
-    }
-    return relativeFilePath;
+    return saveSuccess;
 }
-
 
 @end

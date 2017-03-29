@@ -17,10 +17,10 @@
  *  @param fileName                 文件以什么名字保存
  *  @param relativeDirectoryPath    文件保存的相对路径
  *
- *  return 文件相对于home目录的相对路径（如果保存失败，返回nil）
+ *  return 是否保存成功
  */
-+ (NSString *)saveFileData:(NSData *)data
-              withFileName:(NSString *)fileName
-   toRelativeDirectoryPath:(NSString *)relativeDirectoryPath;
++ (BOOL)saveFileData:(NSData *)data
+        withFileName:(NSString *)fileName
+toRelativeDirectoryPath:(NSString *)relativeDirectoryPath;
 
 @end
