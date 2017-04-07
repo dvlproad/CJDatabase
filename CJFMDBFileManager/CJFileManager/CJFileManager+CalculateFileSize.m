@@ -18,7 +18,7 @@
     BOOL isFileExists = [fileManager fileExistsAtPath:fileAbsolutePath
                                           isDirectory:&isFileDirectory];
     if (isFileExists == NO) {
-        NSLog(@"文件/文件夹不存在");
+        //NSLog(@"文件/文件夹不存在");
         return 0;
     }
     

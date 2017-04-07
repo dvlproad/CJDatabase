@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CJFMDBFileManager"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "更好的使用数据库easier to use FMDB."
   s.homepage     = "https://github.com/dvlproad/CJDatabase"
   s.license      = "MIT"
@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFMDBFileManager_1.1.0" }
-  s.source_files  = "CJFMDBFileManager/**/*.{h,m}"
+  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFMDBFileManager_1.1.1" }
+  s.source_files  = "CJFMDBFileManager/*.{h,m}", "CJFMDBFileManager/Models/**/*.{h,m}"
   s.resources = "CJFMDBFileManager/demofmdb.db"
   s.frameworks = 'UIKit'
 
@@ -22,5 +22,13 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
   s.dependency 'FMDB', '~> 2.6.2'
+
+  s.subspec 'CJFileManager' do |ss|
+    ss.source_files = "CJFMDBFileManager/CJFileManager/**/*.{h,m}"
+  end
+
+  s.subspec 'CJFileModel' do |ss|
+    ss.source_files = "CJFMDBFileManager/CJFileModel/**/*.{h,m}"
+  end
 
 end
