@@ -1,103 +1,79 @@
 # 数据库Database
-包含CJFMDBFileManager和CommonSqliteUtil,可任选其一来操作数据库
+包含CJFMDBFileManager和CommonSqliteUtil,可任选其一来操作数据库。
 
-## CJFMDBFileManager
-实现多数据的管理，不同的CJFMDBFileManager子类管理不同的数据库(原来的CommonFMDBUtil已停止使用)
+附：编辑CommonSqliteUtil.podspec的时候别忘了加 `s.libraries = "sqlite3"`
 
+## 前言
+增加CJFMDBFileManager此库的目的：在操作数据的时候，我们每次都必须先打开对应的数据库后才能对其进行增删改查等操作。为了避免每次操作的时候，都必须重复性的打开关闭数据库，这里专门写了个操作数据库Manager文件的类来操作数据库。该CJFMDBFileManager类不仅可以方便的实现增删改查等操作，同时还能很方便的操作数据库文件。
 
-方法：
-两个类的使用精髓，都是注重在编辑sql语句上。
-附：
-```
-CommonSqliteUtil.podspec别忘了加 s.libraries = "sqlite3"
-```
+## CJFile/CJFileModel
+文件模型的基类
 
+## CJFile/CJFMDBFileManager
+**一个不仅可以方便的操作数据库文件中的内容（一般为增删改查），还可以方便的操作数据库文件（如创建、删除、重建）的库。**
+易忽略的需求：在每次登录(比如切换账号）的时候，我们要操作的数据库可能因为用户的变化而变化。所以我们必须在每次登录的时候重新设置当前库操作的数据是哪个数据库。这里由于我们已经将每次打开关闭数据库的操作集成到了了CJFMDBFileManager中了，所以我们这里当我们每次登录的时候，必须通过CJFMDBFileManager的`createDatabaseInFileRelativePath...`的方法来重新设置其操作的数据库是哪一个,该方法中的`CJFileExistActionType`值根据实际来填写。
+
+附：当你有多个不同的类型数据库要管理的时候，你可以使用不同的CJFMDBFileManager子类来管理不同的数据库。当然如果你要在原来数据库中通过新增表来增加的话也是可以的。
 
 
 ## Example 
-``` 
-#pragma mark - insert
+0、创建数据库
 
-+ (BOOL)insertInfo:(AccountInfo *)info
-{
-    NSAssert(info, @"info cannot be nil!");
+```
+	NSString *directoryRelativePath = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeRelative
+                                                            bySubDirectoryPath:@"DB/Account"
+                                                         inSearchPathDirectory:NSDocumentDirectory
+                                                               createIfNoExist:YES];
+    NSString *fileRelativePath = [directoryRelativePath stringByAppendingPathComponent:databaseName];
     
-    NSString *sql = [NSString stringWithFormat:
-                     @"INSERT OR REPLACE INTO %@ (uid, name, email, pasd, imageName, imageUrl, imagePath, modified, execTypeL) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')", kCurrentTableName, info.uid, info.name, info.email, info.pasd, info.imageName, info.imageUrl, info.imagePath, info.modified, info.execTypeL];//DB Error: 1 "unrecognized token: ":"" 即要求插入的字符串需加引号'，而对于表名，属性名，可以不用像原来那样添加。
+	NSArray *createTableSqls = [self allCreateTableSqls];
+    [[FirstFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
+                                                          byCreateTableSqls:createTableSqls
+                                                            ifExistDoAction:CJFileExistActionRerecertIt];
+```
+
+
+1、插入记录
+
+``` 
++ (BOOL)insertAccountInfos:(NSArray<AccountInfo *> *)infos {
+    NSMutableArray *sqls = [[NSMutableArray alloc] init];
+    for (AccountInfo *info in infos) {
+        NSString *sql = [AccountTableSQL sqlForInsertInfo:info];
+        [sqls addObject:sql];
+    }
     
-    return [[FirstFMDBFileManager sharedInstance] insert:sql];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:sqls useTransaction:YES];
 }
 ``` 
 
-``` 
-#pragma mark - remove
+2、删除
 
-+ (BOOL)removeInfoWhereName:(NSString *)name
-{
-    NSAssert(name, @"name cannot be nil!");
-    
-    NSString *sql = [NSString stringWithFormat:@"delete from %@ where name = '%@'",kCurrentTableName, name];
-    
-    return [[FirstFMDBFileManager sharedInstance] remove:sql];
+``` 
++ (BOOL)removeAccountInfoWhereName:(NSString *)name {
+    NSString *sql = [AccountTableSQL sqlForRemoveInfoWhereName:name];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
 }
 ``` 
 
-``` 
-#pragma mark - update
-
-+ (BOOL)updateInfoExceptUID:(AccountInfo *)info whereUID:(NSString *)uid
-{
-    NSString *sql = [NSString stringWithFormat:
-                           @"UPDATE %@ SET name = '%@', email = '%@', pasd = '%@', imageName = '%@', imageUrl = '%@', imagePath = '%@' WHERE uid = '%@'", kCurrentTableName,
-                     info.name, info.email, info.pasd, info.imageName, info.imageUrl, info.imagePath, uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
-}
-
-+ (BOOL)updateInfoImagePath:(NSString *)imagePath whereUID:(NSString *)uid{
-    NSString *sql = [NSString stringWithFormat:
-                      @"update %@ set imagePath = '%@' where uid = '%@'", kCurrentTableName, imagePath, uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
-}
-
-
-+ (BOOL)updateInfoImageUrl:(NSString *)imageUrl whereUID:(NSString *)uid{
-    NSString *sql = [NSString stringWithFormat:
-                     @"update %@ set imageUrl = '%@' where uid = '%@'", kCurrentTableName, imageUrl, uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
-}
-
-+ (BOOL)updateInfoExecTypeL:(NSString *)execTypeL whereUID:(NSString *)uid{
-    NSString *sql = [NSString stringWithFormat:
-                     @"update %@ set execTypeL = '%@' where uid = '%@'", kCurrentTableName, execTypeL, uid];
-    return [[FirstFMDBFileManager sharedInstance] update:sql];
-}
+3、修改
 
 ``` 
++ (BOOL)updateAccountInfoExceptUID:(AccountInfo *)info whereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForUpdateInfoExceptUID:info whereUID:uid];
+    return [[FirstFMDBFileManager sharedInstance] cjExecuteUpdate:@[sql]];
+}
+``` 
+
+4、查找querey
 
 ``` 
-#pragma mark - query
-
-+ (NSDictionary *)selectInfoWhereUID:(NSString *)uid
-{
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ where uid = '%@'", kCurrentTableName, uid];
++ (NSDictionary *)selectAccountInfoWhereUID:(NSString *)uid {
+    NSString *sql = [AccountTableSQL sqlForSelectInfoWhereUID:uid];
     
     NSArray *result = [[FirstFMDBFileManager sharedInstance] query:sql];
     return result.count > 0 ? result[0] : nil;
 }
-
-//为了在登录页面上，输入名字的时候可以显示出已经登录过的头像而加入的方法
-+ (UIImage *)selectImageWhereName:(NSString *)name
-{
-    NSString *sql = [NSString stringWithFormat:@"SELECT imagePath FROM %@ where name = '%@'", kCurrentTableName, name];
-    
-    NSArray *result = [[FirstFMDBFileManager sharedInstance] query:sql];
-    NSString *imagePath = result.count > 0 ?
-            [result[0] objectForKey:@"imagePath"] : [[NSBundle mainBundle] pathForResource:@"people_logout" ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-    
-    return image;
-}
-
 ``` 
 
 

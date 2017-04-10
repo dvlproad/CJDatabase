@@ -13,6 +13,13 @@ typedef NS_ENUM(NSUInteger, CJLocalPathType) {
     CJLocalPathTypeRelative,    /**< 相对于Home的路径 */
 };
 
+typedef NS_ENUM(NSUInteger, CJFileExistAction) {
+    CJFileExistActionShowError,
+    CJFileExistActionUseOld,
+    CJFileExistActionRerecertIt,
+};
+
+
 @interface CJFileManager : NSObject
 
 /**

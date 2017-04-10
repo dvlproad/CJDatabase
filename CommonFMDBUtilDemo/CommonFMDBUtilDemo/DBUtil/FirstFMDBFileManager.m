@@ -22,8 +22,6 @@
 + (void)createDatabaseForUserName:(NSString *)userName {
     NSAssert(userName != nil && [userName length] > 0, @"userName不能为空");
     
-    [[FirstFMDBFileManager sharedInstance] cancelManagerAnyDatabase];
-    
     NSString *databaseName = @"";
     if ([userName hasSuffix:@".db"]) {
         databaseName = userName;
@@ -41,15 +39,14 @@
     NSString *copyDatabasePath = [[NSBundle mainBundle] pathForResource:@"demofmdb.db" ofType:nil];
     [[FirstFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
                                                          byCopyDatabasePath:copyDatabasePath
-                                                            ifExistDoAction:CJFMDBFileExistActionTypeUseOld];
+                                                            ifExistDoAction:CJFileExistActionUseOld];
     
     //方法2:create
     /*
     NSArray *createTableSqls = [self allCreateTableSqls];
-    
     [[FirstFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
                                                           byCreateTableSqls:createTableSqls
-                                                            ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+                                                            ifExistDoAction:CJFileExistActionRerecertIt];
     */
 }
 

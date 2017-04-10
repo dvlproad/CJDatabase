@@ -10,13 +10,6 @@
 #import <FMDB/FMDB.h>
 #import "CJFMDBFileDeleteResult.h"
 
-typedef NS_ENUM(NSUInteger, CJFMDBFileExistActionType) {
-    CJFMDBFileExistActionTypeShowError,
-    CJFMDBFileExistActionTypeUseOld,
-    CJFMDBFileExistActionTypeRerecertIt,
-};
-
-
 /**
  *  数据库文件管理类（每个数据库的管理类都必须继承此类，并实现单例方法）
  */
@@ -26,39 +19,34 @@ typedef NS_ENUM(NSUInteger, CJFMDBFileExistActionType) {
 @property (nonatomic, copy, readonly) NSString *fileRelativePath;   /**< 当前数据库的相对路径 */
 
 
-/**
- *  取消对任何数据库的管理（账号切换的时候使用,即重新登录的时候）
- */
-- (void)cancelManagerAnyDatabase;
-
 #pragma mark - 创建数据库、数据表
 /**
- *  在指定目录创建数据库
+ *  在指定目录创建数据库(每次登录时候必须调用此方法，因为账号可能变更，操作的数据库可能随账号变化而变化)
  *
  *  @param fileRelativePath     指定的目录的路径(可通过CJFileManager的
                                 getLocalDirectoryPathType:CJLocalPathTypeRelative...获得)
  *  @param copyDatabasePath     要复制的数据库的路径
- *  @param FMDBFileExistAction  如果该指定目录存在则执行什么操作
+ *  @param fileExistAction      如果该指定目录存在则执行什么操作
  *
  *  return 是否创建成功
  */
 - (BOOL)createDatabaseInFileRelativePath:(NSString *)fileRelativePath
                       byCopyDatabasePath:(NSString *)copyDatabasePath
-                         ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction;
+                         ifExistDoAction:(CJFileExistAction)fileExistAction;
 
 /**
- *  在指定目录创建数据库
+ *  在指定目录创建数据库(每次登录时候必须调用此方法，因为账号可能变更，操作的数据库可能随账号变化而变化)
  *
  *  @param fileRelativePath     指定的目录的路径(可通过CJFileManager的
                                 getLocalDirectoryPathType:CJLocalPathTypeRelative...获得)
  *  @param createTableSqls      创建数据表的sql
- *  @param FMDBFileExistAction  如果该指定目录存在则执行什么操作
+ *  @param fileExistAction      如果该指定目录存在则执行什么操作
  *
  *  return 是否创建成功
  */
 - (BOOL)createDatabaseInFileRelativePath:(NSString *)fileRelativePath
                        byCreateTableSqls:(NSArray<NSString *> *)createTableSqls
-                         ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction;
+                         ifExistDoAction:(CJFileExistAction)fileExistAction;
 
 
 /**

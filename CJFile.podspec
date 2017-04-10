@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "CJFile"
-  s.version      = "0.0.1"
-  s.summary      = "文件管理器，同时包括数据库文件的管理以及一个更好的使用数据库的方法."
+  s.version      = "0.0.2"
+  s.summary      = "一个不仅可以方便的操作数据库文件中的内容（增删改查），还可以方便的操作数据库文件（如创建、删除、重建）的库。"
   s.homepage     = "https://github.com/dvlproad/CJDatabase"
   s.license      = "MIT"
   s.author             = { "dvlproad" => "studyroad@qq.com" }
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.1" }
+  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.2" }
   #s.source_files  = "CJFile/*.{h,m}"
   #s.resources = "CJFile/{png}"
   s.frameworks = 'UIKit'

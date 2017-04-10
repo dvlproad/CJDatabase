@@ -22,8 +22,6 @@
 + (void)createDatabaseForUserName:(NSString *)userName {
     NSAssert(userName != nil && [userName length] > 0, @"userName不能为空");
     
-    [[SecondFMDBFileManager sharedInstance] cancelManagerAnyDatabase];
-    
     NSString *databaseName = @"";
     if ([userName hasSuffix:@".db"]) {
         databaseName = userName;
@@ -41,7 +39,7 @@
     NSString *copyDatabasePath = [[NSBundle mainBundle] pathForResource:@"demosqlite.db" ofType:nil];
     [[SecondFMDBFileManager sharedInstance] createDatabaseInFileRelativePath:fileRelativePath
                                                           byCopyDatabasePath:copyDatabasePath
-                                                             ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+                                                             ifExistDoAction:CJFileExistActionRerecertIt];
 }
 
 @end

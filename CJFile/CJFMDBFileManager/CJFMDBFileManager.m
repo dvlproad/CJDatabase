@@ -19,7 +19,9 @@
 
 @implementation CJFMDBFileManager
 
-/** 完整的描述请参见文件头部 */
+/**
+ *  取消对任何数据库的管理（账号切换的时候使用,即重新登录的时候）
+ */
 - (void)cancelManagerAnyDatabase {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *managerFileRelativePathKey = [self managerFileRelativePathKey];
@@ -31,9 +33,11 @@
 /** 完整的描述请参见文件头部 */
 - (BOOL)createDatabaseInFileRelativePath:(NSString *)fileRelativePath
                       byCopyDatabasePath:(NSString *)copyDatabasePath
-               ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction
+               ifExistDoAction:(CJFileExistAction)fileExistAction
 {
-    BOOL canCreate = [self canCreateDatabaseFileInFileRelativePath:fileRelativePath ifExistDoAction:FMDBFileExistAction];
+    [self cancelManagerAnyDatabase];
+    
+    BOOL canCreate = [self canCreateDatabaseFileInFileRelativePath:fileRelativePath ifExistDoAction:fileExistAction];
     if (canCreate == NO) {
         return NO;
     }
@@ -55,9 +59,11 @@
 /** 完整的描述请参见文件头部 */
 - (BOOL)createDatabaseInFileRelativePath:(NSString *)fileRelativePath
                        byCreateTableSqls:(NSArray<NSString *> *)createTableSqls
-                         ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction
+                         ifExistDoAction:(CJFileExistAction)fileExistAction
 {
-    BOOL canCreate = [self canCreateDatabaseFileInFileRelativePath:fileRelativePath ifExistDoAction:FMDBFileExistAction];
+    [self cancelManagerAnyDatabase];
+    
+    BOOL canCreate = [self canCreateDatabaseFileInFileRelativePath:fileRelativePath ifExistDoAction:fileExistAction];
     if (canCreate == NO) {
         return NO;
     }
@@ -92,7 +98,7 @@
     NSString *fileRelativePath = deleteResult.fileRelativePath;
     BOOL recreateSuccess = [self createDatabaseInFileRelativePath:fileRelativePath
                                                 byCreateTableSqls:createTableSqls
-                                                  ifExistDoAction:CJFMDBFileExistActionTypeRerecertIt];
+                                                  ifExistDoAction:CJFileExistActionRerecertIt];
     return recreateSuccess;
 }
 
@@ -274,12 +280,12 @@
  *  @param databaseName         新建的数据库的名字
  *  @param subDirectoryPath     复制数据库到哪里
  *  @param bundleDatabaseName   要复制的数据库的名字
- *  @param FMDBFileExistAction  如果存在执行什么操作
+ *  @param fileExistAction      如果存在执行什么操作
  *
  *  return  是否新建成功
  */
 - (BOOL)canCreateDatabaseFileInFileRelativePath:(NSString *)fileRelativePath
-                                ifExistDoAction:(CJFMDBFileExistActionType)FMDBFileExistAction {
+                                ifExistDoAction:(CJFileExistAction)fileExistAction {
     //保存本类当前操作的具体数据库，用于在账户切换的时候，先取消对之前具体的数据库的控制，进而控制新的数据库
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *managerFileRelativePathKey = [self managerFileRelativePathKey];
@@ -297,15 +303,15 @@
     NSString *home = NSHomeDirectory();
     NSString *fileAbsolutePath = [home stringByAppendingPathComponent:fileRelativePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:fileAbsolutePath]) {
-        if (FMDBFileExistAction == CJFMDBFileExistActionTypeShowError) {
+        if (fileExistAction == CJFileExistActionShowError) {
             NSAssert(NO, @"创建数据库到指定目录失败，因为该目录已存在同名文件%@ !", fileAbsolutePath);
             return NO;
             
-        } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeUseOld) {
+        } else if (fileExistAction == CJFileExistActionUseOld) {
             //NSLog(@"该目录已存在同名文件%@ !，故不重复创建，继续使用之前的", databasePath);
             return NO;
             
-        } else if (FMDBFileExistAction == CJFMDBFileExistActionTypeRerecertIt) {
+        } else if (fileExistAction == CJFileExistActionRerecertIt) {
             [self deleteCurrentFMDBFile]; //会将_fileRelativePath设为nil
         }
     }
