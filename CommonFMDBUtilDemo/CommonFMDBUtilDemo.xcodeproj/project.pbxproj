@@ -11,11 +11,15 @@
 		4A8C95074AD3AA76B66D5AB8 /* libPods-CommonFMDBUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE8880F3009787627C46A9C /* libPods-CommonFMDBUtilDemo.a */; };
 		780973561E1B69BA0017F1B9 /* SecondFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780973551E1B69BA0017F1B9 /* SecondFMDBFileManager.m */; };
 		7817ED551E17D7C00003D974 /* CommonInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817ED541E17D7C00003D974 /* CommonInfoHelper.m */; };
-		783285AA1F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285A31F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.m */; };
-		783285AB1F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285A51F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.m */; };
-		783285AC1F44B6A400A67E4D /* CJDiskManager+ReadWriteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285A71F44B6A400A67E4D /* CJDiskManager+ReadWriteData.m */; };
-		783285AD1F44B6A400A67E4D /* CJDiskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285A91F44B6A400A67E4D /* CJDiskManager.m */; };
-		783285B01F44B72F00A67E4D /* CJDiskManager+GetCreatePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285AF1F44B72F00A67E4D /* CJDiskManager+GetCreatePath.m */; };
+		783285E81F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285D91F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m */; };
+		783285E91F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285DB1F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m */; };
+		783285EA1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285DD1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m */; };
+		783285EB1F44C6CD00A67E4D /* CJFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285DF1F44C6CD00A67E4D /* CJFileManager.m */; };
+		783286411F44CABA00A67E4D /* CJCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783286361F44CABA00A67E4D /* CJCacheManager.m */; };
+		783286421F44CABA00A67E4D /* CJCacheDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 783286391F44CABA00A67E4D /* CJCacheDataModel.m */; };
+		783286431F44CABA00A67E4D /* CJDataDiskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832863C1F44CABA00A67E4D /* CJDataDiskManager.m */; };
+		783286441F44CABA00A67E4D /* CJDataMemoryCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832863E1F44CABA00A67E4D /* CJDataMemoryCacheManager.m */; };
+		783286451F44CABA00A67E4D /* CJDataMemoryDictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783286401F44CABA00A67E4D /* CJDataMemoryDictionaryManager.m */; };
 		783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F564A1E0A7371005D1608 /* FirstFMDBFileManager.m */; };
 		784F47B21E9B70A3000DEEBE /* CJFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F47A41E9B70A3000DEEBE /* CJFileModel.m */; };
 		784F47B31E9B70A3000DEEBE /* CJImageFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F47A61E9B70A3000DEEBE /* CJImageFileModel.m */; };
@@ -60,16 +64,24 @@
 		780973551E1B69BA0017F1B9 /* SecondFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondFMDBFileManager.m; sourceTree = "<group>"; };
 		7817ED531E17D7C00003D974 /* CommonInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoHelper.h; sourceTree = "<group>"; };
 		7817ED541E17D7C00003D974 /* CommonInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoHelper.m; sourceTree = "<group>"; };
-		783285A21F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJDiskManager+CalculateFileSize.h"; sourceTree = "<group>"; };
-		783285A31F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJDiskManager+CalculateFileSize.m"; sourceTree = "<group>"; };
-		783285A41F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJDiskManager+DeleteCleanFile.h"; sourceTree = "<group>"; };
-		783285A51F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJDiskManager+DeleteCleanFile.m"; sourceTree = "<group>"; };
-		783285A61F44B6A400A67E4D /* CJDiskManager+ReadWriteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJDiskManager+ReadWriteData.h"; sourceTree = "<group>"; };
-		783285A71F44B6A400A67E4D /* CJDiskManager+ReadWriteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJDiskManager+ReadWriteData.m"; sourceTree = "<group>"; };
-		783285A81F44B6A400A67E4D /* CJDiskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDiskManager.h; sourceTree = "<group>"; };
-		783285A91F44B6A400A67E4D /* CJDiskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDiskManager.m; sourceTree = "<group>"; };
-		783285AE1F44B72F00A67E4D /* CJDiskManager+GetCreatePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJDiskManager+GetCreatePath.h"; sourceTree = "<group>"; };
-		783285AF1F44B72F00A67E4D /* CJDiskManager+GetCreatePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJDiskManager+GetCreatePath.m"; sourceTree = "<group>"; };
+		783285D81F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJFileManager+CalculateFileSize.h"; sourceTree = "<group>"; };
+		783285D91F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJFileManager+CalculateFileSize.m"; sourceTree = "<group>"; };
+		783285DA1F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJFileManager+DeleteCleanFile.h"; sourceTree = "<group>"; };
+		783285DB1F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJFileManager+DeleteCleanFile.m"; sourceTree = "<group>"; };
+		783285DC1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJFileManager+GetCreatePath.h"; sourceTree = "<group>"; };
+		783285DD1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJFileManager+GetCreatePath.m"; sourceTree = "<group>"; };
+		783285DE1F44C6CD00A67E4D /* CJFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFileManager.h; sourceTree = "<group>"; };
+		783285DF1F44C6CD00A67E4D /* CJFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFileManager.m; sourceTree = "<group>"; };
+		783286351F44CABA00A67E4D /* CJCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJCacheManager.h; sourceTree = "<group>"; };
+		783286361F44CABA00A67E4D /* CJCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJCacheManager.m; sourceTree = "<group>"; };
+		783286381F44CABA00A67E4D /* CJCacheDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJCacheDataModel.h; sourceTree = "<group>"; };
+		783286391F44CABA00A67E4D /* CJCacheDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJCacheDataModel.m; sourceTree = "<group>"; };
+		7832863B1F44CABA00A67E4D /* CJDataDiskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataDiskManager.h; sourceTree = "<group>"; };
+		7832863C1F44CABA00A67E4D /* CJDataDiskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataDiskManager.m; sourceTree = "<group>"; };
+		7832863D1F44CABA00A67E4D /* CJDataMemoryCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataMemoryCacheManager.h; sourceTree = "<group>"; };
+		7832863E1F44CABA00A67E4D /* CJDataMemoryCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataMemoryCacheManager.m; sourceTree = "<group>"; };
+		7832863F1F44CABA00A67E4D /* CJDataMemoryDictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataMemoryDictionaryManager.h; sourceTree = "<group>"; };
+		783286401F44CABA00A67E4D /* CJDataMemoryDictionaryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataMemoryDictionaryManager.m; sourceTree = "<group>"; };
 		783F56491E0A7371005D1608 /* FirstFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFMDBFileManager.h; sourceTree = "<group>"; };
 		783F564A1E0A7371005D1608 /* FirstFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFMDBFileManager.m; sourceTree = "<group>"; };
 		784F47A31E9B70A3000DEEBE /* CJFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFileModel.h; sourceTree = "<group>"; };
@@ -156,27 +168,59 @@
 			path = ../../CommonInfoHelper;
 			sourceTree = "<group>";
 		};
-		783285A11F44B6A400A67E4D /* CJDiskManager */ = {
+		783285D71F44C6CD00A67E4D /* CJFileManager */ = {
 			isa = PBXGroup;
 			children = (
-				783285A81F44B6A400A67E4D /* CJDiskManager.h */,
-				783285A91F44B6A400A67E4D /* CJDiskManager.m */,
-				783285AE1F44B72F00A67E4D /* CJDiskManager+GetCreatePath.h */,
-				783285AF1F44B72F00A67E4D /* CJDiskManager+GetCreatePath.m */,
-				783285A61F44B6A400A67E4D /* CJDiskManager+ReadWriteData.h */,
-				783285A71F44B6A400A67E4D /* CJDiskManager+ReadWriteData.m */,
-				783285A41F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.h */,
-				783285A51F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.m */,
-				783285A21F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.h */,
-				783285A31F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.m */,
+				783285DE1F44C6CD00A67E4D /* CJFileManager.h */,
+				783285DF1F44C6CD00A67E4D /* CJFileManager.m */,
+				783285DC1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.h */,
+				783285DD1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m */,
+				783285DA1F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.h */,
+				783285DB1F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m */,
+				783285D81F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.h */,
+				783285D91F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m */,
 			);
-			path = CJDiskManager;
+			path = CJFileManager;
+			sourceTree = "<group>";
+		};
+		783286341F44CABA00A67E4D /* CJCacheManager */ = {
+			isa = PBXGroup;
+			children = (
+				783286351F44CABA00A67E4D /* CJCacheManager.h */,
+				783286361F44CABA00A67E4D /* CJCacheManager.m */,
+				783286371F44CABA00A67E4D /* Model */,
+				7832863A1F44CABA00A67E4D /* ReadWriteDataManager */,
+			);
+			name = CJCacheManager;
+			path = ../../CJCacheManager;
+			sourceTree = "<group>";
+		};
+		783286371F44CABA00A67E4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				783286381F44CABA00A67E4D /* CJCacheDataModel.h */,
+				783286391F44CABA00A67E4D /* CJCacheDataModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7832863A1F44CABA00A67E4D /* ReadWriteDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				7832863B1F44CABA00A67E4D /* CJDataDiskManager.h */,
+				7832863C1F44CABA00A67E4D /* CJDataDiskManager.m */,
+				7832863D1F44CABA00A67E4D /* CJDataMemoryCacheManager.h */,
+				7832863E1F44CABA00A67E4D /* CJDataMemoryCacheManager.m */,
+				7832863F1F44CABA00A67E4D /* CJDataMemoryDictionaryManager.h */,
+				783286401F44CABA00A67E4D /* CJDataMemoryDictionaryManager.m */,
+			);
+			path = ReadWriteDataManager;
 			sourceTree = "<group>";
 		};
 		784F47981E9B70A3000DEEBE /* CJFile */ = {
 			isa = PBXGroup;
 			children = (
-				783285A11F44B6A400A67E4D /* CJDiskManager */,
+				783285D71F44C6CD00A67E4D /* CJFileManager */,
 				784F47A21E9B70A3000DEEBE /* CJFileModel */,
 				784F47A71E9B70A3000DEEBE /* CJFMDBFileManager */,
 			);
@@ -267,6 +311,7 @@
 				80495E7F1B47A06400F72858 /* AppDelegate.m */,
 				80495E811B47A06400F72858 /* ViewController.h */,
 				80495E821B47A06400F72858 /* ViewController.m */,
+				783286341F44CABA00A67E4D /* CJCacheManager */,
 				784F47981E9B70A3000DEEBE /* CJFile */,
 				7817ED521E17D7C00003D974 /* CommonInfoHelper */,
 				7894B3591DB79A1F0066C11C /* DBUtil */,
@@ -546,26 +591,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				7894B3611DB79A1F0066C11C /* AccountTableSQL.m in Sources */,
-				783285AC1F44B6A400A67E4D /* CJDiskManager+ReadWriteData.m in Sources */,
 				784F47B21E9B70A3000DEEBE /* CJFileModel.m in Sources */,
 				7894B3621DB79A1F0066C11C /* AccountSqliteUtil.m in Sources */,
-				783285AA1F44B6A400A67E4D /* CJDiskManager+CalculateFileSize.m in Sources */,
+				783285E81F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m in Sources */,
+				783286441F44CABA00A67E4D /* CJDataMemoryCacheManager.m in Sources */,
+				783285E91F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m in Sources */,
 				7894B3631DB79A1F0066C11C /* AccountInfo.m in Sources */,
 				7817ED551E17D7C00003D974 /* CommonInfoHelper.m in Sources */,
+				783286431F44CABA00A67E4D /* CJDataDiskManager.m in Sources */,
 				80495E831B47A06400F72858 /* ViewController.m in Sources */,
-				783285B01F44B72F00A67E4D /* CJDiskManager+GetCreatePath.m in Sources */,
+				783286411F44CABA00A67E4D /* CJCacheManager.m in Sources */,
 				784F47B31E9B70A3000DEEBE /* CJImageFileModel.m in Sources */,
 				784F47B41E9B70A3000DEEBE /* CJFMDBFileManager.m in Sources */,
 				80495E801B47A06400F72858 /* AppDelegate.m in Sources */,
 				783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */,
 				80495EE81B47CA0200F72858 /* CommonSqliteUtil.m in Sources */,
+				783285EB1F44C6CD00A67E4D /* CJFileManager.m in Sources */,
+				783286421F44CABA00A67E4D /* CJCacheDataModel.m in Sources */,
 				80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */,
+				783285EA1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m in Sources */,
 				784F47B61E9B70A3000DEEBE /* CJFMDBFileDeleteResult.m in Sources */,
 				80495E7D1B47A06400F72858 /* main.m in Sources */,
-				783285AB1F44B6A400A67E4D /* CJDiskManager+DeleteCleanFile.m in Sources */,
-				783285AD1F44B6A400A67E4D /* CJDiskManager.m in Sources */,
 				80495ECF1B47A8EE00F72858 /* DBViewController.m in Sources */,
 				780973561E1B69BA0017F1B9 /* SecondFMDBFileManager.m in Sources */,
+				783286451F44CABA00A67E4D /* CJDataMemoryDictionaryManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

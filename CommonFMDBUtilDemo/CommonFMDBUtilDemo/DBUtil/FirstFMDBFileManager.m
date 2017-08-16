@@ -29,7 +29,7 @@
         databaseName = [NSString stringWithFormat:@"%@.db", userName];
     }
     
-    NSString *directoryRelativePath = [CJDiskManager getLocalDirectoryPathType:CJLocalPathTypeRelative
+    NSString *directoryRelativePath = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeRelative
                                                             bySubDirectoryPath:@"DB/Account"
                                                          inSearchPathDirectory:NSDocumentDirectory
                                                                createIfNoExist:YES];

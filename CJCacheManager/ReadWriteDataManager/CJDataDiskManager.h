@@ -1,15 +1,15 @@
 //
-//  CJDiskManager+ReadWriteData.h
+//  CJDataDiskManager.h
 //  CommonFMDBUtilDemo
 //
 //  Created by ciyouzen on 6/25/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJDiskManager.h"
+#import <Foundation/Foundation.h>
 
-///数据的保存和读取
-@interface CJDiskManager (ReadWriteData)
+///数据在磁盘上的存储与获取 CJReadWriteDataDiskManager
+@interface CJDataDiskManager : NSObject
 
 /**
  *  保存文件到以home相对的相对路径下

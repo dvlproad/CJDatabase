@@ -1,14 +1,14 @@
 //
-//  CJDiskManager+DeleteCleanFile.m
+//  CJFileManager+DeleteCleanFile.m
 //  CommonFMDBUtilDemo
 //
 //  Created by ciyouzen on 6/25/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJDiskManager+DeleteCleanFile.h"
+#import "CJFileManager+DeleteCleanFile.h"
 
-@implementation CJDiskManager (DeleteCleanFile)
+@implementation CJFileManager (DeleteCleanFile)
 
 #pragma mark - 删除单个文件
 + (void)deleteFileWithFileName:(NSString *)fileName inRelativeDirectoryPath:(NSString *)relativeDirectoryPath

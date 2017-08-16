@@ -1,14 +1,14 @@
 //
-//  CJDiskManager+ReadWriteData.m
+//  CJDataDiskManager.m
 //  CommonFMDBUtilDemo
 //
 //  Created by ciyouzen on 6/25/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJDiskManager+ReadWriteData.h"
+#import "CJDataDiskManager.h"
 
-@implementation CJDiskManager (ReadWriteData)
+@implementation CJDataDiskManager
 
 /** 完整的描述请参见文件头部 */
 + (BOOL)saveFileData:(NSData *)data
@@ -49,5 +49,6 @@ toRelativeDirectoryPath:(NSString *)relativeDirectoryPath
     
     return data;
 }
+
 
 @end

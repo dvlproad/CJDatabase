@@ -1,5 +1,5 @@
 //
-//  CJDiskManager.h
+//  CJFileManager.h
 //  CommonFMDBUtilDemo
 //
 //  Created by ciyouzen on 6/25/15.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CJDiskManager : NSObject
+@interface CJFileManager : NSObject
 
 @end

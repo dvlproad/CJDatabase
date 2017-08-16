@@ -1,14 +1,14 @@
 //
-//  CJDiskManager+DeleteCleanFile.h
+//  CJFileManager+DeleteCleanFile.h
 //  CommonFMDBUtilDemo
 //
 //  Created by ciyouzen on 6/25/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJDiskManager.h"
+#import "CJFileManager.h"
 
-@interface CJDiskManager (DeleteCleanFile)
+@interface CJFileManager (DeleteCleanFile)
 
 /**
  *  删除单个文件

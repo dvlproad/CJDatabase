@@ -1,12 +1,12 @@
 //
-//  CJDiskManager+GetCreatePath.h
+//  CJFileManager+GetCreatePath.h
 //  CommonFMDBUtilDemo
 //
 //  Created by ciyouzen on 6/25/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJDiskManager.h"
+#import "CJFileManager.h"
 
 typedef NS_ENUM(NSUInteger, CJLocalPathType) {
     CJLocalPathTypeAbsolute,    /**< 绝对路径 */
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, CJFileExistAction) {
 };
 
 
-@interface CJDiskManager (GetCreatePath)
+@interface CJFileManager (GetCreatePath)
 
 /**
  *  获取searchPathDirectory文件夹下子文件夹的路径
