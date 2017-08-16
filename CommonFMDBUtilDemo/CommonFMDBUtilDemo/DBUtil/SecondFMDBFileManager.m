@@ -29,7 +29,7 @@
         databaseName = [NSString stringWithFormat:@"%@.db", userName];
     }
     
-    NSString *directoryRelativePath = [CJFileManager getLocalDirectoryPathType:CJLocalPathTypeRelative
+    NSString *directoryRelativePath = [CJDiskManager getLocalDirectoryPathType:CJLocalPathTypeRelative
                                                             bySubDirectoryPath:@"DB/Sqlite"
                                                          inSearchPathDirectory:NSDocumentDirectory
                                                                createIfNoExist:YES];

@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 7/4/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 7/4/15.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -11,7 +11,7 @@
 #ifdef USE_CommonFMDBUtil
     #import "FirstFMDBFileManager.h"
     #import "SecondFMDBFileManager.h"
-    #import "CJFileManager+CalculateFileSize.h"
+    #import "CJDiskManager+CalculateFileSize.h"
 #else
     #import "CommonSqliteUtil.h"
 #endif
@@ -41,14 +41,14 @@
 #endif
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"demofmdb.db" ofType:nil];
-    NSInteger fileSize = [CJFileManager calculateFileSizeForFileAbsolutePath:path];
+    NSInteger fileSize = [CJDiskManager calculateFileSizeForFileAbsolutePath:path];
     NSLog(@"fileSize = %ld", fileSize);
-    NSString *fileSizeString = [CJFileManager showFileSize:fileSize unitType:CJFileSizeUnitTypeBestUnit];
+    NSString *fileSizeString = [CJDiskManager showFileSize:fileSize unitType:CJFileSizeUnitTypeBestUnit];
     NSLog(@"fileSizeString = %@", fileSizeString);
     
-    NSInteger fileSize2 = [CJFileManager calculateFileSizeForFileAbsolutePath:documentsDirectory];
+    NSInteger fileSize2 = [CJDiskManager calculateFileSizeForFileAbsolutePath:documentsDirectory];
     NSLog(@"fileSize2 = %ld", fileSize2);
-    NSString *fileSizeString2 = [CJFileManager showFileSize:fileSize2 unitType:CJFileSizeUnitTypeMB];
+    NSString *fileSizeString2 = [CJDiskManager showFileSize:fileSize2 unitType:CJFileSizeUnitTypeMB];
     NSLog(@"fileSizeString2 = %@", fileSizeString2);
 
     return YES;

@@ -2,18 +2,20 @@
 //  CJFMDBFileManager.h
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 6/25/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 6/25/15.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJFileManager.h"
+#import "CJDiskManager.h"
+#import "CJDiskManager+GetCreatePath.h"
+
 #import <FMDB/FMDB.h>
 #import "CJFMDBFileDeleteResult.h"
 
 /**
  *  数据库文件管理类（每个数据库的管理类都必须继承此类，并实现单例方法）
  */
-@interface CJFMDBFileManager : CJFileManager {
+@interface CJFMDBFileManager : CJDiskManager {
     
 }
 @property (nonatomic, copy, readonly) NSString *fileRelativePath;   /**< 当前数据库的相对路径 */
@@ -23,7 +25,7 @@
 /**
  *  在指定目录创建数据库(每次登录时候必须调用此方法，因为账号可能变更，操作的数据库可能随账号变化而变化)
  *
- *  @param fileRelativePath     指定的目录的路径(可通过CJFileManager的
+ *  @param fileRelativePath     指定的目录的路径(可通过CJDiskManager的
                                 getLocalDirectoryPathType:CJLocalPathTypeRelative...获得)
  *  @param copyDatabasePath     要复制的数据库的路径
  *  @param fileExistAction      如果该指定目录存在则执行什么操作
@@ -37,7 +39,7 @@
 /**
  *  在指定目录创建数据库(每次登录时候必须调用此方法，因为账号可能变更，操作的数据库可能随账号变化而变化)
  *
- *  @param fileRelativePath     指定的目录的路径(可通过CJFileManager的
+ *  @param fileRelativePath     指定的目录的路径(可通过CJDiskManager的
                                 getLocalDirectoryPathType:CJLocalPathTypeRelative...获得)
  *  @param createTableSqls      创建数据表的sql
  *  @param fileExistAction      如果该指定目录存在则执行什么操作

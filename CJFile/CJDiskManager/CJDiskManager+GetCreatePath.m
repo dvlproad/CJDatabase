@@ -1,14 +1,14 @@
 //
-//  CJFileManager.m
+//  CJDiskManager+GetCreatePath.m
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 6/25/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 6/25/15.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJFileManager.h"
+#import "CJDiskManager+GetCreatePath.h"
 
-@implementation CJFileManager
+@implementation CJDiskManager (GetCreatePath)
 
 /** 完整的描述请参见文件头部 */
 + (NSString *)getLocalDirectoryPathType:(CJLocalPathType)localPathType

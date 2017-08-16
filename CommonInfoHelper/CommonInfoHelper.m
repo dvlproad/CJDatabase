@@ -2,8 +2,8 @@
 //  CommonInfoHelper.m
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 7/4/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 7/4/15.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
 #import "CommonInfoHelper.h"

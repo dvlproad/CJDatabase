@@ -2,7 +2,7 @@
 //  CJFMDBFileDeleteResult.m
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 2016/1/4.
+//  Created by ciyouzen on 2016/1/4.
 //  Copyright © 2016年 ciyouzen. All rights reserved.
 //
 

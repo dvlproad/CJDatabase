@@ -3,13 +3,14 @@
 //  CommonFMDBUtilDemo
 //
 //  Created by dvlproad on 8/10/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
 #import "CJImageFileModel.h"
 
 @implementation CJImageFileModel
 
+/* 完整的描述请参见文件头部 */
 - (void)cj_getImageWithCompleteBlock:(void(^)(UIImage *image))completeBlock
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

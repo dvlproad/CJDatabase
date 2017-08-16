@@ -1,14 +1,14 @@
 //
-//  CJFileManager+CalculateFileSize.m
+//  CJDiskManager+CalculateFileSize.m
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 6/25/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 6/25/15.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJFileManager+CalculateFileSize.h"
+#import "CJDiskManager+CalculateFileSize.h"
 
-@implementation CJFileManager (CalculateFileSize)
+@implementation CJDiskManager (CalculateFileSize)
 
 /** 完整的描述请参见文件头部 */
 + (NSInteger)calculateFileSizeForFileAbsolutePath:(NSString *)fileAbsolutePath {

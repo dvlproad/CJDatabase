@@ -1,12 +1,12 @@
 //
-//  CJFileManager+CalculateFileSize.h
+//  CJDiskManager+CalculateFileSize.h
 //  CommonFMDBUtilDemo
 //
-//  Created by lichq on 6/25/15.
-//  Copyright (c) 2015 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 6/25/15.
+//  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJFileManager.h"
+#import "CJDiskManager.h"
 
 typedef NS_ENUM(NSUInteger, CJFileSizeUnitType) {
     CJFileSizeUnitTypeBestUnit,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, CJFileSizeUnitType) {
     CJFileSizeUnitTypeGB
 };
 
-@interface CJFileManager (CalculateFileSize)
+@interface CJDiskManager (CalculateFileSize)
 
 /**
  *  计算对应路径下的文件/文件夹大小(计算出来的单位为B)
