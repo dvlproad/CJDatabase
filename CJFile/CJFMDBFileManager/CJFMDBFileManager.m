@@ -168,7 +168,12 @@
 
 
 #pragma mark - 数据库表操作
-- (NSMutableArray *)query:(NSString *)sql
+- (NSMutableArray *)query:(NSString *)sql {
+    return [self query:sql withCustomChangeBlock:nil];
+    
+}
+
+- (NSMutableArray *)query:(NSString *)sql withCustomChangeBlock:(id (^)(FMResultSet *rs))customChangeBlock
 {
     NSAssert(sql, @"sql cannot be nil!");
     
@@ -183,7 +188,13 @@
     
     FMResultSet *rs = [db executeQuery:sql];
     while ([rs next]) {
-        [result addObject:[rs resultDictionary]];
+        if (customChangeBlock == nil) {
+            NSDictionary *dictionary = [rs resultDictionary];
+            [result addObject:dictionary];
+        } else {
+            id model = customChangeBlock(rs);
+            [result addObject:model];
+        }
     }
     
     [db close];

@@ -85,6 +85,8 @@
  */
 - (NSMutableArray *)query:(NSString *)sql;
 
+- (NSMutableArray *)query:(NSString *)sql withCustomChangeBlock:(id (^)(FMResultSet *rs))customChangeBlock;
+
 /**
  *  执行sqls语句
  *
