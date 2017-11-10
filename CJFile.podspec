@@ -1,15 +1,29 @@
 Pod::Spec.new do |s|
   s.name         = "CJFile"
-  s.version      = "0.0.4"
-  s.summary      = "一个不仅可以方便的操作数据库文件中的内容（增删改查），还可以方便的操作数据库文件（如创建、删除、重建）的库。"
+  s.version      = "0.0.5"
+  s.summary      = "数据/文件操作的库"
   s.homepage     = "https://github.com/dvlproad/CJDatabase"
+
+  s.description  = <<-DESC
+                  *、CJFMDBFileManager：一个不仅可以方便的操作数据库文件中的内容（增删改查），还可以方便的操作数据库文件（如创建、删除、重建）的库。
+                  *、CJFileStorage：处理数据库保存或缓存。
+
+                   A longer description of CJPopupAction in Markdown format.
+
+                   * Think: Why did you write this? What is the focus? What does it do?
+                   * CocoaPods will be using this to generate tags, and improve search results.
+                   * Try to keep it short, snappy and to the point.
+                   * Finally, don't worry about the indent, CocoaPods strips it!
+                   DESC
+
+
   s.license      = "MIT"
   s.author             = { "dvlproad" => "studyroad@qq.com" }
   # s.social_media_url   = "http://twitter.com/dvlproad"
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.4" }
+  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.5" }
   #s.source_files  = "CJFile/*.{h,m}"
   #s.resources = "CJFile/{png}"
   s.frameworks = 'UIKit'
@@ -35,6 +49,11 @@ Pod::Spec.new do |s|
 
   s.subspec 'CJFileModel' do |ss|
     ss.source_files = "CJFile/CJFileModel/**/*.{h,m}"
+  end
+
+  # 处理数据库保存或缓存
+  s.subspec 'CJFileStorage' do |ss|
+    ss.source_files = "CJFile/CJFileStorage/**/*.{h,m}"
   end
 
 end
