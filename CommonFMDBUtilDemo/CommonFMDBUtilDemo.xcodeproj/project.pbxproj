@@ -30,6 +30,7 @@
 		78FD58D81FB657A200BFD189 /* CJDataDiskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58D11FB657A200BFD189 /* CJDataDiskManager.m */; };
 		78FD58D91FB657A200BFD189 /* CJDataMemoryCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58D31FB657A200BFD189 /* CJDataMemoryCacheManager.m */; };
 		78FD58DA1FB657A200BFD189 /* CJDataMemoryDictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58D51FB657A200BFD189 /* CJDataMemoryDictionaryManager.m */; };
+		78FD58DD1FB65E1C00BFD189 /* CJFileManager+SaveFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58DB1FB65E1B00BFD189 /* CJFileManager+SaveFileData.m */; };
 		80495E7D1B47A06400F72858 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495E7C1B47A06400F72858 /* main.m */; };
 		80495E801B47A06400F72858 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495E7F1B47A06400F72858 /* AppDelegate.m */; };
 		80495E831B47A06400F72858 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495E821B47A06400F72858 /* ViewController.m */; };
@@ -100,6 +101,8 @@
 		78FD58D31FB657A200BFD189 /* CJDataMemoryCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataMemoryCacheManager.m; sourceTree = "<group>"; };
 		78FD58D41FB657A200BFD189 /* CJDataMemoryDictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataMemoryDictionaryManager.h; sourceTree = "<group>"; };
 		78FD58D51FB657A200BFD189 /* CJDataMemoryDictionaryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataMemoryDictionaryManager.m; sourceTree = "<group>"; };
+		78FD58DB1FB65E1B00BFD189 /* CJFileManager+SaveFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJFileManager+SaveFileData.m"; sourceTree = "<group>"; };
+		78FD58DC1FB65E1B00BFD189 /* CJFileManager+SaveFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJFileManager+SaveFileData.h"; sourceTree = "<group>"; };
 		7AE8880F3009787627C46A9C /* libPods-CommonFMDBUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommonFMDBUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80495E771B47A06400F72858 /* CommonFMDBUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommonFMDBUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80495E7B1B47A06400F72858 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 				783285DB1F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m */,
 				783285D81F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.h */,
 				783285D91F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m */,
+				78FD58DC1FB65E1B00BFD189 /* CJFileManager+SaveFileData.h */,
+				78FD58DB1FB65E1B00BFD189 /* CJFileManager+SaveFileData.m */,
 			);
 			path = CJFileManager;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */,
 				783285EA1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m in Sources */,
 				784F47B61E9B70A3000DEEBE /* CJFMDBFileDeleteResult.m in Sources */,
+				78FD58DD1FB65E1C00BFD189 /* CJFileManager+SaveFileData.m in Sources */,
 				80495E7D1B47A06400F72858 /* main.m in Sources */,
 				80495ECF1B47A8EE00F72858 /* DBViewController.m in Sources */,
 				780973561E1B69BA0017F1B9 /* SecondFMDBFileManager.m in Sources */,
