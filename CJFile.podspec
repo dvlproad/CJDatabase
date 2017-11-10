@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CJFile"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "数据/文件操作的库"
   s.homepage     = "https://github.com/dvlproad/CJDatabase"
 
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.5" }
+  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.6" }
   #s.source_files  = "CJFile/*.{h,m}"
   #s.resources = "CJFile/{png}"
   s.frameworks = 'UIKit'

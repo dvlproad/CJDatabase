@@ -8,7 +8,7 @@
 
 #import "CJFileManager.h"
 
-///数据保存(图片选择后需要用)
+///数据保存(图片选择等要用到的保存数据方法（之前被整理到CJDataDiskManager了)），所以这里不要轻易删除
 @interface CJFileManager (SaveData)
 
 /**
