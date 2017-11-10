@@ -1,20 +1,20 @@
 //
-//  CJFileModel.m
+//  CJPathFileModel.m
 //  CommonFMDBUtilDemo
 //
-//  Created by dvlproad on 8/10/15.
+//  Created by ciyouzen on 8/10/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJFileModel.h"
+#import "CJPathFileModel.h"
 
-@interface CJFileModel ()
+@interface CJPathFileModel ()
 
 @end
 
 
 
-@implementation CJFileModel
+@implementation CJPathFileModel
 
 #pragma mark - 初始化
 - (instancetype)initWithNetworkAbsoluteUrl:(NSString *)networkAbsoluteUrl

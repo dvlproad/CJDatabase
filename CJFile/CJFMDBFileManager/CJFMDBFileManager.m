@@ -286,11 +286,10 @@
 
 #pragma mark - Setter
 /**
- *  复制数据库到某个目录下
+ *  通过数据库的相对路径，判断数据库是否已经存在或生成（如果存在进行指定的操作，如果不存在不进行操作并返回YES）
  *
- *  @param databaseName         新建的数据库的名字
- *  @param subDirectoryPath     复制数据库到哪里
- *  @param bundleDatabaseName   要复制的数据库的名字
+ *  @param fileRelativePath     新建的数据库的相对路径(可通过CJFileManager的
+ getLocalDirectoryPathType:CJLocalPathTypeRelative...获得)
  *  @param fileExistAction      如果存在执行什么操作
  *
  *  return  是否新建成功

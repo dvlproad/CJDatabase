@@ -1,9 +1,9 @@
 //
 //  CJCacheDataModel.h
-//  CommonAFNUtilDemo
+//  CommonFMDBUtilDemo
 //
-//  Created by dvlproad on 2017/3/9.
-//  Copyright © 2017年 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 2017/3/9.
+//  Copyright © 2017年 dvlproad. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

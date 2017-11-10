@@ -2,8 +2,8 @@
 //  FirstFMDBFileManager.h
 //  CommonFMDBUtilDemo
 //
-//  Created by dvlproad on 2016/12/21.
-//  Copyright © 2016年 ciyouzen. All rights reserved.
+//  Created by ciyouzen on 2016/12/21.
+//  Copyright © 2016年 dvlproad. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

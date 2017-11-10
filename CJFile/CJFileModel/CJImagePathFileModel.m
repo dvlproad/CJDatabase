@@ -1,14 +1,14 @@
 //
-//  CJImageFileModel.m
+//  CJImagePathFileModel.m
 //  CommonFMDBUtilDemo
 //
-//  Created by dvlproad on 8/10/15.
+//  Created by ciyouzen on 8/10/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
-#import "CJImageFileModel.h"
+#import "CJImagePathFileModel.h"
 
-@implementation CJImageFileModel
+@implementation CJImagePathFileModel
 
 /* 完整的描述请参见文件头部 */
 - (void)cj_getImageWithCompleteBlock:(void(^)(UIImage *image))completeBlock

@@ -1,8 +1,8 @@
 //
-//  CJFileModel.h
+//  CJPathFileModel.h
 //  CommonFMDBUtilDemo
 //
-//  Created by dvlproad on 8/10/15.
+//  Created by ciyouzen on 8/10/15.
 //  Copyright (c) 2015 dvlproad. All rights reserved.
 //
 
@@ -14,7 +14,8 @@ typedef NS_ENUM(NSUInteger, CJFileSourceType) {
     CJFileSourceTypeNetwork,        /**< 网络文件 */
 };
 
-@interface CJFileModel : NSObject {
+///路径数据模型(在CJNetwork库中有一个CJUploadFileModel,这两个不一样)
+@interface CJPathFileModel : NSObject {
     
 }
 //readonly
