@@ -25,11 +25,6 @@
 		7894B3611DB79A1F0066C11C /* AccountTableSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7894B35B1DB79A1F0066C11C /* AccountTableSQL.m */; };
 		7894B3621DB79A1F0066C11C /* AccountSqliteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7894B35D1DB79A1F0066C11C /* AccountSqliteUtil.m */; };
 		7894B3631DB79A1F0066C11C /* AccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7894B3601DB79A1F0066C11C /* AccountInfo.m */; };
-		78FD58D61FB657A200BFD189 /* CJCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58CB1FB657A200BFD189 /* CJCacheManager.m */; };
-		78FD58D71FB657A200BFD189 /* CJCacheDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58CE1FB657A200BFD189 /* CJCacheDataModel.m */; };
-		78FD58D81FB657A200BFD189 /* CJDataDiskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58D11FB657A200BFD189 /* CJDataDiskManager.m */; };
-		78FD58D91FB657A200BFD189 /* CJDataMemoryCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58D31FB657A200BFD189 /* CJDataMemoryCacheManager.m */; };
-		78FD58DA1FB657A200BFD189 /* CJDataMemoryDictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58D51FB657A200BFD189 /* CJDataMemoryDictionaryManager.m */; };
 		78FD58DD1FB65E1C00BFD189 /* CJFileManager+SaveFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD58DB1FB65E1B00BFD189 /* CJFileManager+SaveFileData.m */; };
 		80495E7D1B47A06400F72858 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495E7C1B47A06400F72858 /* main.m */; };
 		80495E801B47A06400F72858 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80495E7F1B47A06400F72858 /* AppDelegate.m */; };
@@ -91,16 +86,6 @@
 		7894B35D1DB79A1F0066C11C /* AccountSqliteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSqliteUtil.m; sourceTree = "<group>"; };
 		7894B35F1DB79A1F0066C11C /* AccountInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfo.h; sourceTree = "<group>"; };
 		7894B3601DB79A1F0066C11C /* AccountInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfo.m; sourceTree = "<group>"; };
-		78FD58CA1FB657A200BFD189 /* CJCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJCacheManager.h; sourceTree = "<group>"; };
-		78FD58CB1FB657A200BFD189 /* CJCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJCacheManager.m; sourceTree = "<group>"; };
-		78FD58CD1FB657A200BFD189 /* CJCacheDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJCacheDataModel.h; sourceTree = "<group>"; };
-		78FD58CE1FB657A200BFD189 /* CJCacheDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJCacheDataModel.m; sourceTree = "<group>"; };
-		78FD58D01FB657A200BFD189 /* CJDataDiskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataDiskManager.h; sourceTree = "<group>"; };
-		78FD58D11FB657A200BFD189 /* CJDataDiskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataDiskManager.m; sourceTree = "<group>"; };
-		78FD58D21FB657A200BFD189 /* CJDataMemoryCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataMemoryCacheManager.h; sourceTree = "<group>"; };
-		78FD58D31FB657A200BFD189 /* CJDataMemoryCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataMemoryCacheManager.m; sourceTree = "<group>"; };
-		78FD58D41FB657A200BFD189 /* CJDataMemoryDictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJDataMemoryDictionaryManager.h; sourceTree = "<group>"; };
-		78FD58D51FB657A200BFD189 /* CJDataMemoryDictionaryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJDataMemoryDictionaryManager.m; sourceTree = "<group>"; };
 		78FD58DB1FB65E1B00BFD189 /* CJFileManager+SaveFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CJFileManager+SaveFileData.m"; sourceTree = "<group>"; };
 		78FD58DC1FB65E1B00BFD189 /* CJFileManager+SaveFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CJFileManager+SaveFileData.h"; sourceTree = "<group>"; };
 		7AE8880F3009787627C46A9C /* libPods-CommonFMDBUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommonFMDBUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,7 +176,6 @@
 		784F47981E9B70A3000DEEBE /* CJFile */ = {
 			isa = PBXGroup;
 			children = (
-				78FD58C91FB657A200BFD189 /* CJFileStorage */,
 				783285D71F44C6CD00A67E4D /* CJFileManager */,
 				784F47A21E9B70A3000DEEBE /* CJFileModel */,
 				784F47A71E9B70A3000DEEBE /* CJFMDBFileManager */,
@@ -254,39 +238,6 @@
 				7894B3601DB79A1F0066C11C /* AccountInfo.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		78FD58C91FB657A200BFD189 /* CJFileStorage */ = {
-			isa = PBXGroup;
-			children = (
-				78FD58CA1FB657A200BFD189 /* CJCacheManager.h */,
-				78FD58CB1FB657A200BFD189 /* CJCacheManager.m */,
-				78FD58CC1FB657A200BFD189 /* Model */,
-				78FD58CF1FB657A200BFD189 /* ReadWriteDataManager */,
-			);
-			path = CJFileStorage;
-			sourceTree = "<group>";
-		};
-		78FD58CC1FB657A200BFD189 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				78FD58CD1FB657A200BFD189 /* CJCacheDataModel.h */,
-				78FD58CE1FB657A200BFD189 /* CJCacheDataModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		78FD58CF1FB657A200BFD189 /* ReadWriteDataManager */ = {
-			isa = PBXGroup;
-			children = (
-				78FD58D01FB657A200BFD189 /* CJDataDiskManager.h */,
-				78FD58D11FB657A200BFD189 /* CJDataDiskManager.m */,
-				78FD58D21FB657A200BFD189 /* CJDataMemoryCacheManager.h */,
-				78FD58D31FB657A200BFD189 /* CJDataMemoryCacheManager.m */,
-				78FD58D41FB657A200BFD189 /* CJDataMemoryDictionaryManager.h */,
-				78FD58D51FB657A200BFD189 /* CJDataMemoryDictionaryManager.m */,
-			);
-			path = ReadWriteDataManager;
 			sourceTree = "<group>";
 		};
 		80495E6E1B47A06400F72858 = {
@@ -548,13 +499,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CommonFMDBUtilDemoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E34D6924F8BD6AE545D559E1 /* [CP] Check Pods Manifest.lock */ = {
@@ -563,13 +517,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CommonFMDBUtilDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF8FF8D4CF1E43E18447E910 /* [CP] Embed Pods Frameworks */ = {
@@ -598,20 +555,16 @@
 				784F47B21E9B70A3000DEEBE /* CJPathFileModel.m in Sources */,
 				7894B3621DB79A1F0066C11C /* AccountSqliteUtil.m in Sources */,
 				783285E81F44C6CD00A67E4D /* CJFileManager+CalculateFileSize.m in Sources */,
-				78FD58D91FB657A200BFD189 /* CJDataMemoryCacheManager.m in Sources */,
 				783285E91F44C6CD00A67E4D /* CJFileManager+DeleteCleanFile.m in Sources */,
 				7894B3631DB79A1F0066C11C /* AccountInfo.m in Sources */,
 				7817ED551E17D7C00003D974 /* CommonInfoHelper.m in Sources */,
-				78FD58D81FB657A200BFD189 /* CJDataDiskManager.m in Sources */,
 				80495E831B47A06400F72858 /* ViewController.m in Sources */,
-				78FD58D61FB657A200BFD189 /* CJCacheManager.m in Sources */,
 				784F47B31E9B70A3000DEEBE /* CJImagePathFileModel.m in Sources */,
 				784F47B41E9B70A3000DEEBE /* CJFMDBFileManager.m in Sources */,
 				80495E801B47A06400F72858 /* AppDelegate.m in Sources */,
 				783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */,
 				80495EE81B47CA0200F72858 /* CommonSqliteUtil.m in Sources */,
 				783285EB1F44C6CD00A67E4D /* CJFileManager.m in Sources */,
-				78FD58D71FB657A200BFD189 /* CJCacheDataModel.m in Sources */,
 				80495ED11B47A8EE00F72858 /* DBViewController+Event.m in Sources */,
 				783285EA1F44C6CD00A67E4D /* CJFileManager+GetCreatePath.m in Sources */,
 				784F47B61E9B70A3000DEEBE /* CJFMDBFileDeleteResult.m in Sources */,
@@ -619,7 +572,6 @@
 				80495E7D1B47A06400F72858 /* main.m in Sources */,
 				80495ECF1B47A8EE00F72858 /* DBViewController.m in Sources */,
 				780973561E1B69BA0017F1B9 /* SecondFMDBFileManager.m in Sources */,
-				78FD58DA1FB657A200BFD189 /* CJDataMemoryDictionaryManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

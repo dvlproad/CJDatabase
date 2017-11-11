@@ -1,12 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "CJFile"
-  s.version      = "0.0.6"
-  s.summary      = "数据/文件操作的库"
+  s.version      = "0.0.7"
+  s.summary      = "文件操作的库(数据的缓存放在了CJNetwork/CJCacheManager)"
   s.homepage     = "https://github.com/dvlproad/CJDatabase"
 
   s.description  = <<-DESC
                   *、CJFMDBFileManager：一个不仅可以方便的操作数据库文件中的内容（增删改查），还可以方便的操作数据库文件（如创建、删除、重建）的库。
-                  *、CJFileStorage：处理数据库保存或缓存。
 
                    A longer description of CJPopupAction in Markdown format.
 
@@ -23,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.6" }
+  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.7" }
   #s.source_files  = "CJFile/*.{h,m}"
   #s.resources = "CJFile/{png}"
   s.frameworks = 'UIKit'
@@ -51,9 +50,5 @@ Pod::Spec.new do |s|
     ss.source_files = "CJFile/CJFileModel/**/*.{h,m}"
   end
 
-  # 处理数据库保存或缓存
-  s.subspec 'CJFileStorage' do |ss|
-    ss.source_files = "CJFile/CJFileStorage/**/*.{h,m}"
-  end
 
 end
