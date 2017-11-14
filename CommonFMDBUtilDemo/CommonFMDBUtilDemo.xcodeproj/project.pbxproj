@@ -17,7 +17,6 @@
 		783285EB1F44C6CD00A67E4D /* CJFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783285DF1F44C6CD00A67E4D /* CJFileManager.m */; };
 		783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F564A1E0A7371005D1608 /* FirstFMDBFileManager.m */; };
 		784F47B21E9B70A3000DEEBE /* CJPathFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F47A41E9B70A3000DEEBE /* CJPathFileModel.m */; };
-		784F47B31E9B70A3000DEEBE /* CJImagePathFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F47A61E9B70A3000DEEBE /* CJImagePathFileModel.m */; };
 		784F47B41E9B70A3000DEEBE /* CJFMDBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F47A91E9B70A3000DEEBE /* CJFMDBFileManager.m */; };
 		784F47B51E9B70A3000DEEBE /* demofmdb.db in Resources */ = {isa = PBXBuildFile; fileRef = 784F47AA1E9B70A3000DEEBE /* demofmdb.db */; };
 		784F47B61E9B70A3000DEEBE /* CJFMDBFileDeleteResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F47AD1E9B70A3000DEEBE /* CJFMDBFileDeleteResult.m */; };
@@ -72,8 +71,6 @@
 		783F564A1E0A7371005D1608 /* FirstFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFMDBFileManager.m; sourceTree = "<group>"; };
 		784F47A31E9B70A3000DEEBE /* CJPathFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJPathFileModel.h; sourceTree = "<group>"; };
 		784F47A41E9B70A3000DEEBE /* CJPathFileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJPathFileModel.m; sourceTree = "<group>"; };
-		784F47A51E9B70A3000DEEBE /* CJImagePathFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJImagePathFileModel.h; sourceTree = "<group>"; };
-		784F47A61E9B70A3000DEEBE /* CJImagePathFileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJImagePathFileModel.m; sourceTree = "<group>"; };
 		784F47A81E9B70A3000DEEBE /* CJFMDBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFMDBFileManager.h; sourceTree = "<group>"; };
 		784F47A91E9B70A3000DEEBE /* CJFMDBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFMDBFileManager.m; sourceTree = "<group>"; };
 		784F47AA1E9B70A3000DEEBE /* demofmdb.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = demofmdb.db; sourceTree = "<group>"; };
@@ -189,8 +186,6 @@
 			children = (
 				784F47A31E9B70A3000DEEBE /* CJPathFileModel.h */,
 				784F47A41E9B70A3000DEEBE /* CJPathFileModel.m */,
-				784F47A51E9B70A3000DEEBE /* CJImagePathFileModel.h */,
-				784F47A61E9B70A3000DEEBE /* CJImagePathFileModel.m */,
 			);
 			path = CJFileModel;
 			sourceTree = "<group>";
@@ -559,7 +554,6 @@
 				7894B3631DB79A1F0066C11C /* AccountInfo.m in Sources */,
 				7817ED551E17D7C00003D974 /* CommonInfoHelper.m in Sources */,
 				80495E831B47A06400F72858 /* ViewController.m in Sources */,
-				784F47B31E9B70A3000DEEBE /* CJImagePathFileModel.m in Sources */,
 				784F47B41E9B70A3000DEEBE /* CJFMDBFileManager.m in Sources */,
 				80495E801B47A06400F72858 /* AppDelegate.m in Sources */,
 				783F564B1E0A7371005D1608 /* FirstFMDBFileManager.m in Sources */,
