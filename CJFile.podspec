@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CJFile"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "文件操作的库(数据的缓存放在了CJNetwork/CJCacheManager)"
   s.homepage     = "https://github.com/dvlproad/CJDatabase"
 
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.8" }
+  s.source       = { :git => "https://github.com/dvlproad/CJDatabase.git", :tag => "CJFile_0.0.9" }
   #s.source_files  = "CJFile/*.{h,m}"
   #s.resources = "CJFile/{png}"
   s.frameworks = 'UIKit'
@@ -38,7 +38,8 @@ Pod::Spec.new do |s|
   s.subspec 'CJFMDBFileManager' do |ss|
     ss.source_files = "CJFile/CJFMDBFileManager/**/*.{h,m}"
     ss.resources = "CJFile/CJFMDBFileManager/demofmdb.db"
-    ss.dependency 'FMDB', '~> 2.6.2'
+
+    ss.dependency 'FMDB'
     ss.dependency 'CJFile/CJFileManager'
   end
 
